@@ -1,0 +1,114 @@
+#[allow(unused_imports)]
+use proconio::{
+    fastout, input,
+    marker::{Bytes, Chars, Isize1, Usize1},
+};
+#[allow(dead_code)]
+fn update<T: PartialOrd>(value: T, target: &mut T, cond: std::cmp::Ordering) {
+    if value.partial_cmp(target) == Some(cond) {
+        *target = value;
+    }
+}
+
+#[allow(unused_macros)]
+macro_rules! chmax {
+    ($target:expr, $value:expr) => {
+        update($value, &mut $target, std::cmp::Ordering::Greater)
+    };
+}
+#[allow(unused_macros)]
+macro_rules! chmin {
+    ($target:expr, $value:expr) => {
+        update($value, &mut $target, std::cmp::Ordering::Less)
+    };
+}
+
+#[fastout]
+pub fn main() {
+    input! {n:usize,w:i64,a:[(i64,i64);n]}
+    let mut dp = vec![vec![std::i64::MAX - 1000000000; 100001]; 101];
+    dp[0][0] = 0;
+    for i in 0..n {
+        for j in 0..100001 as usize {
+            if j >= a[i].1 as usize {
+                chmin!(dp[i + 1][j], dp[i][j - a[i].1 as usize] + a[i].0);
+            }
+            chmin!(dp[i + 1][j], dp[i][j]);
+        }
+    }
+    let mut res = 0;
+    for i in 0..100001 {
+        if dp[n][i] <= w {
+            res = i;
+        }
+    }
+    println!("{}", res);
+}
+
+fn d() {
+    input! {n:usize,w:i64,a:[(i64,i64);n]}
+    let mut dp = vec![vec![0; w as usize + 1]; n + 1];
+    for i in 0..n {
+        for j in 0..=w as usize {
+            if j >= a[i].0 as usize {
+                chmax!(dp[i + 1][j], dp[i][j - a[i].0 as usize] + a[i].1);
+            }
+            chmax!(dp[i + 1][j], dp[i][j]);
+        }
+    }
+    println!("{}", dp.iter().last().unwrap().iter().max().unwrap());
+}
+
+fn c() {
+    input! {n:usize,r:[[i64;3];n]}
+    let mut dp = vec![vec![0; 3]; n];
+    for i in 0..n {
+        for j in 0..3 {
+            if i == 0 {
+                dp[i][j] = r[i][j];
+                continue;
+            }
+            for k in 0..3 {
+                if j == k {
+                    continue;
+                }
+                chmax!(dp[i][j], dp[i - 1][k] + r[i][j]);
+            }
+        }
+    }
+    let mut res = 0;
+    for r in dp {
+        res = std::cmp::max(res, r.into_iter().max().unwrap());
+    }
+    println!("{}", res);
+}
+
+fn b() {
+    input! {n:usize,k:usize,h:[i64;n]}
+    let mut dp = vec![std::i64::MAX; n];
+    dp[0] = 0;
+    for i in 1..n {
+        for j in 1..=k {
+            if i >= j {
+                chmin!(dp[i], dp[i - j] + (h[i] - h[i - j]).abs());
+            }
+        }
+    }
+    println!("{}", dp.iter().last().unwrap());
+}
+fn a() {
+    input! {
+    n:usize,h:[i64;n],
+        }
+    let mut dp = vec![std::i64::MAX; n];
+    dp[0] = 0;
+    for i in 1..n {
+        if i == 1 {
+            dp[i] = (h[i] - h[i - 1]).abs();
+            continue;
+        }
+        chmin!(dp[i], dp[i - 1] + (h[i] - h[i - 1]).abs());
+        chmin!(dp[i], dp[i - 2] + (h[i] - h[i - 2]).abs());
+    }
+    println!("{}", dp.iter().last().unwrap());
+}

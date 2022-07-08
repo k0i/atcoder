@@ -1,0 +1,45 @@
+{
+   // Используйте IntelliSense, чтобы узнать о возможных атрибутах.
+   // Наведите указатель мыши, чтобы просмотреть описания существующих атрибутов.
+   // Для получения дополнительной информации посетите: https://go.microsoft.com/fwlink/?linkid=830387
+   "version": "0.2.0",
+   "configurations": [
+      {
+         "type": "lldb",
+         "request": "launch",
+         "name": "Debug executable 'medium100'",
+         "cargo": {
+            "args": [
+               "build",
+               "--bin=medium100",
+               "--package=medium100"
+            ],
+            "filter": {
+               "name": "medium100",
+               "kind": "bin"
+            }
+         },
+         "args": [],
+         "cwd": "${workspaceFolder}"
+      },
+      {
+         "type": "lldb",
+         "request": "launch",
+         "name": "Debug unit tests in executable 'medium100'",
+         "cargo": {
+            "args": [
+               "test",
+               "--no-run",
+               "--bin=medium100",
+               "--package=medium100"
+            ],
+            "filter": {
+               "name": "medium100",
+               "kind": "bin"
+            }
+         },
+         "args": [],
+         "cwd": "${workspaceFolder}"
+      }
+   ]
+}
