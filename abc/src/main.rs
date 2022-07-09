@@ -14,7 +14,8 @@ mod abc251;
 mod abc253;
 mod abc254;
 mod abc256;
+mod abc258;
 mod agc019;
 fn main() {
-    abc256::main();
+    abc258::main();
 }
