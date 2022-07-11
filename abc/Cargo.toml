@@ -8,5 +8,5 @@ edition = "2021"
 [dependencies]
 proconio = { version = "0.4.3", features = ["derive"] }
 itertools = "0.10.3"
-k0i = "0.0.2"
+k0i = "0.0.4"
 

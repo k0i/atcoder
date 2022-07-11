@@ -28,9 +28,9 @@ dependencies = [
 
 [[package]]
 name = "k0i"
-version = "0.0.2"
+version = "0.0.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "12a13e13871f0649f771928f0e4fa3c4235a37b163a583c040ffaee9d50ccc40"
+checksum = "4f15e1103c5a5dcf17cd0fcf024ffc50fb5c54e0e61d9ec197f823bd7d232652"
 
 [[package]]
 name = "lazy_static"
