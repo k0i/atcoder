@@ -1,4 +1,10 @@
-#![allow(dead_code)]
+#![allow(
+    dead_code,
+    unused_assignments,
+    unused_variables,
+    unused_mut,
+    unused_imports
+)]
 mod abc019;
 mod abc035;
 mod abc039;
@@ -9,6 +15,7 @@ mod abc171;
 mod abc180;
 mod abc181;
 mod abc182;
+mod abc183;
 mod abc189;
 mod abc203;
 mod abc212;
@@ -26,5 +33,5 @@ mod abc258;
 mod abc259;
 mod agc019;
 fn main() {
-    abc182::main();
+    abc183::main();
 }
