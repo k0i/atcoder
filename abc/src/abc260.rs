@@ -9,7 +9,38 @@ use std::collections::BTreeMap;
 use std::ops::Bound::{Included, Unbounded};
 #[fastout]
 pub fn main() {
-    c()
+    d()
+}
+fn d() {
+    input! {
+        n: usize,
+        k: usize,
+        p: [usize; n],
+    };
+    let mut result = vec![-1; n];
+    let mut bm = BTreeMap::new();
+    for (i, x) in p.into_iter().enumerate() {
+        match bm.range(x..).next() {
+            None => {
+                bm.insert(x, vec![x]);
+            }
+            Some((&k, _)) => {
+                let mut v = bm.remove(&k).unwrap();
+                v.push(x);
+                bm.insert(x, v);
+            }
+        };
+        if bm.get(&x).unwrap().len() == k {
+            bm.remove(&x).map(|vs| {
+                for v in vs {
+                    result[v - 1] = (i + 1) as isize;
+                }
+            });
+        }
+    }
+    for i in result {
+        println!("{}", i);
+    }
 }
 
 fn c() {
