@@ -7,23 +7,6 @@ use proconio::{
 pub fn main() {
     c()
 }
-
-fn b() {
-    input! {n:usize,mut x:u64,c:[(u64,u64);n]}
-    x *= 100;
-    let mut sum = 0;
-    let mut res = -1;
-    for i in 0..n {
-        let (v, p) = c[i];
-        sum += v * p;
-        if sum > x {
-            res = (i + 1) as i64;
-            break;
-        }
-    }
-    println!("{}", res);
-}
-
 fn c() {
     input! {
         n:usize,
@@ -40,4 +23,20 @@ fn c() {
         }
     }
     println!("{}", ans);
+}
+
+fn b() {
+    input! {n:usize,mut x:u64,c:[(u64,u64);n]}
+    x *= 100;
+    let mut sum = 0;
+    let mut res = -1;
+    for i in 0..n {
+        let (v, p) = c[i];
+        sum += v * p;
+        if sum > x {
+            res = (i + 1) as i64;
+            break;
+        }
+    }
+    println!("{}", res);
 }
