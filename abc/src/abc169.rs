@@ -3,8 +3,42 @@ use proconio::{
     fastout, input,
     marker::{Bytes, Chars, Isize1, Usize1},
 };
-#[fastout]
 pub fn main() {
+    input! {mut n:usize}
+    let mut p = vec![];
+    if n == 1 {
+        println!("0");
+        return;
+    }
+    let mut i = 2;
+    let mut a = n;
+    while i * i <= a {
+        if a % i == 0 {
+            p.push(i);
+            a /= i;
+        } else {
+            i += 1;
+        }
+    }
+    if a != 1 {
+        p.push(a);
+    }
+    p.dedup();
+    let mut res = 0;
+    'outer: for i in p.iter() {
+        for j in 1..100 {
+            if n % i.pow(j) == 0 {
+                n /= i.pow(j);
+                res += 1;
+            } else {
+                continue 'outer;
+            }
+        }
+    }
+    println!("{:?}", res);
+}
+
+fn b() {
     input! {
     n:usize,
     a:[u128;n],
