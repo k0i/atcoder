@@ -25,6 +25,24 @@ macro_rules! chmin {
 
 #[fastout]
 pub fn main() {
+    b_distribute()
+}
+
+fn b_distribute() {
+    input! {n:usize,k:usize,h:[i64;n]}
+    let mut dp = vec![std::i64::MAX; n];
+    dp[0] = 0;
+    for i in 0..n {
+        for j in 1..=k {
+            if i + j < n {
+                chmin!(dp[i + j], dp[i] + (h[i] - h[i + j]).abs());
+            }
+        }
+    }
+    println!("{}", dp.iter().last().unwrap());
+}
+
+fn e() {
     input! {n:usize,w:i64,a:[(i64,i64);n]}
     let mut dp = vec![vec![std::i64::MAX - 1000000000; 100001]; 101];
     dp[0][0] = 0;
