@@ -1,6 +1,38 @@
 use proconio::{input, marker::Chars};
 use std::collections::HashMap;
+pub fn main() {
+    d()
+}
 
+pub fn d() {
+    input! {n:usize,
+    a:[u64;n]
+        }
+    let mut cnt = HashMap::new();
+    for i in a {
+        let v = cnt.entry(i).or_insert(0i64);
+        *v += 1;
+    }
+    let mut res = 0;
+
+    for (k, v) in cnt.iter() {
+        let mut div = vec![];
+        let mut i = 1;
+        while i * i <= *k {
+            if k % i == 0 {
+                div.push(i);
+                if i != k / i {
+                    div.push(k / i);
+                }
+            }
+            i += 1;
+        }
+        for d in div {
+            res += v * cnt.get(&(k / d)).unwrap_or(&0) * cnt.get(&d).unwrap_or(&0);
+        }
+    }
+    println!("{:?}", res);
+}
 pub fn c() {
     input! {
     n:usize,
