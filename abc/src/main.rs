@@ -36,6 +36,7 @@ mod abc204;
 mod abc212;
 mod abc223;
 mod abc226;
+mod abc229;
 mod abc232;
 mod abc242;
 mod abc247;
@@ -54,5 +55,5 @@ mod abc263;
 mod abc265;
 mod agc019;
 fn main() {
-    abc265::main();
+    abc229::main();
 }
