@@ -125,8 +125,6 @@ path = "./{{ contest }}"
 ##bin-src-path = './src/bin/{{ bin_alias }}.rs' # optional
 
 [test]
-# Toolchain for the test. (optional)
-toolchain = ""
 # Profile for `cargo build`. ("dev" | "release")
 #
 # Defaults to `"dev"`.
