@@ -24,6 +24,32 @@ macro_rules! chmin {
 
 #[fastout]
 pub fn main() {
+    d()
+}
+fn d() {
+    input! {
+    n:usize,
+    w:usize,
+    z:[(usize,usize);n]
+    }
+    let mut dp = vec![vec![0; w + 1]; n + 1];
+    for i in 1..=n {
+        let (a, b) = z[i - 1];
+        for j in 0..w {
+            chmax!(dp[i][j], dp[i - 1][j]);
+            if j + a <= w {
+                chmax!(dp[i][j + a], dp[i - 1][j] + b);
+            }
+        }
+    }
+    let mut res = 0;
+    for i in dp {
+        chmax!(res, i.into_iter().max().unwrap());
+    }
+    println!("{}", res);
+}
+
+fn c() {
     input! {
     n:u64
         }

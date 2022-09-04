@@ -40,13 +40,15 @@ impl Tree {
         let mut res = 0;
         let mut target = VecDeque::new();
         target.push_front(self.size - 1);
-        let mut visited = vec![false;self.size];
+        let mut visited = vec![false; self.size];
         while !target.is_empty() {
             let nxt = target.pop_front().unwrap();
-            if visited[nxt]{continue;}
-            visited[nxt]=true;
+            if visited[nxt] {
+                continue;
+            }
+            visited[nxt] = true;
             res += self.nodes[nxt].cost;
-         self.nodes[nxt]
+            self.nodes[nxt]
                 .next
                 .iter()
                 .for_each(|n| target.push_front(n - 1));
