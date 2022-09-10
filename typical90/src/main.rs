@@ -1,5 +1,6 @@
 mod eight;
 mod eighteen;
+mod fifty;
 mod four;
 mod fourteen;
 mod one;
@@ -14,5 +15,5 @@ mod twenty_six;
 mod twenty_two;
 mod two;
 fn main() {
-    twenty_six::main();
+    fifty::main();
 }
