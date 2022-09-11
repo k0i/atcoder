@@ -5,6 +5,7 @@
     unused_mut,
     unused_imports
 )]
+mod abc005;
 mod abc019;
 mod abc035;
 mod abc039;
@@ -46,6 +47,7 @@ mod abc223;
 mod abc226;
 mod abc229;
 mod abc232;
+mod abc235;
 mod abc242;
 mod abc247;
 mod abc249;
@@ -64,5 +66,5 @@ mod abc265;
 mod agc019;
 mod pa_ken2019;
 fn main() {
-    abc069::main();
+    abc005::main();
 }
