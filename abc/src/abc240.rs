@@ -1,3 +1,5 @@
+use std::collections::HashMap;
+
 use itertools::Itertools;
 use proconio::{
     fastout, input,
@@ -5,6 +7,43 @@ use proconio::{
 };
 #[fastout]
 pub fn main() {
+    input! {
+                n:usize,
+                a:[i64;n]
+    }
+    let mut stuck = vec![];
+    let mut last = 0;
+    for i in 0..n {
+        if a[i] == *stuck.last().unwrap_or(&-1) {
+            stuck.push(a[i]);
+            last += 1;
+            if last == a[i] {
+                for i in 0..last {
+                    stuck.pop();
+                }
+                if stuck.len() == 0 {
+                    println!("{:?}", 0);
+                    continue;
+                }
+                last = 0;
+                let last_a = *stuck.last().unwrap();
+                for j in (0..stuck.len()).rev() {
+                    if stuck[j] == last_a {
+                        last += 1;
+                    } else {
+                        break;
+                    }
+                }
+            }
+        } else {
+            last = 1;
+            stuck.push(a[i]);
+        }
+        println!("{:?}", stuck.len());
+    }
+}
+
+fn c() {
     input! {
     n:usize,
     x:usize,
