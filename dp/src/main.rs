@@ -23,10 +23,39 @@ macro_rules! chmin {
     };
 }
 
-#[fastout]
 pub fn main() {
-    b_distribute()
+    input! {
+    s:Chars,
+    t:Chars
+        }
+    let mut dp = vec![[0; 3001]; 3001];
+    for i in 0..s.len() {
+        for j in 0..t.len() {
+            if s[i] == t[j] {
+                chmax!(dp[i + 1][j + 1], dp[i][j] + 1);
+            }
+            chmax!(dp[i + 1][j + 1], dp[i + 1][j]);
+            chmax!(dp[i + 1][j + 1], dp[i][j + 1]);
+        }
+    }
+    let mut ans = String::new();
+    let mut i = s.len();
+    let mut j = t.len();
+    while i > 0 && j > 0 {
+        if dp[i][j] == dp[i - 1][j] {
+            i -= 1;
+        } else if dp[i][j] == dp[i][j - 1] {
+            j -= 1;
+        } else {
+            ans.push(s[i - 1]);
+            i -= 1;
+            j -= 1;
+        }
+    }
+    println!("{}", ans.chars().rev().collect::<String>());
 }
+
+fn f() {}
 
 fn b_distribute() {
     input! {n:usize,k:usize,h:[i64;n]}
