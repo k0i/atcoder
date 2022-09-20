@@ -77,5 +77,5 @@ mod abc269;
 mod agc019;
 mod pa_ken2019;
 fn main() {
-    abc094::main();
+    abc204::main();
 }
