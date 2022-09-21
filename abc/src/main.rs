@@ -76,7 +76,8 @@ mod abc265;
 mod abc266;
 mod abc269;
 mod agc019;
+mod arc142;
 mod pa_ken2019;
 fn main() {
-    abc211::main();
+    arc142::main();
 }
