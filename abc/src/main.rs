@@ -53,6 +53,7 @@ mod abc222;
 mod abc223;
 mod abc226;
 mod abc229;
+mod abc230;
 mod abc232;
 mod abc235;
 mod abc237;
@@ -79,5 +80,5 @@ mod agc019;
 mod arc142;
 mod pa_ken2019;
 fn main() {
-    arc142::main();
+    arc230::main();
 }
