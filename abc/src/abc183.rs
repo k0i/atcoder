@@ -5,6 +5,29 @@ use proconio::{
 };
 #[fastout]
 pub fn main() {
+    input! {
+    n:usize,
+    w:isize,
+    stp:[(isize,isize,isize);n]
+    }
+    let mut imos = vec![0; 2 * 100000 + 1];
+    for i in 0..n {
+        let (start, end, amount) = stp[i];
+        imos[start as usize] += amount;
+        imos[end as usize] -= amount;
+    }
+    let mut ans = "Yes";
+    for i in 0..2 * 10usize.pow(5) {
+        imos[i + 1] += imos[i];
+        if imos[i] > w {
+            ans = "No";
+            break;
+        }
+    }
+    println!("{}", ans);
+}
+
+fn c() {
     input! {n:usize,k:u64,t:[[u64;n];n]}
     let mut res = 0;
     for p in (0..n).permutations(n) {
