@@ -6,6 +6,27 @@ use proconio::{
 #[fastout]
 pub fn main() {
     input! {
+    n:usize,
+    d:i64,
+    mut lr:[(i64,i64);n],
+    }
+
+    lr.sort_by_key(|x| x.1);
+
+    let mut cu = -1000000000000000000;
+    let mut res = 0;
+    for i in 0..n {
+        let (l, r) = lr[i];
+        if cu + d - 1 < l {
+            res += 1;
+            cu = r;
+        }
+    }
+    println!("{}", res);
+}
+
+fn c() {
+    input! {
         _: usize,
         a: i64,
         b: i64,
