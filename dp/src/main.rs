@@ -24,6 +24,10 @@ macro_rules! chmin {
 }
 
 pub fn main() {
+    f()
+}
+
+fn f() {
     input! {
     s:Chars,
     t:Chars
@@ -54,8 +58,6 @@ pub fn main() {
     }
     println!("{}", ans.chars().rev().collect::<String>());
 }
-
-fn f() {}
 
 fn b_distribute() {
     input! {n:usize,k:usize,h:[i64;n]}
