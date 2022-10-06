@@ -1,3 +1,5 @@
+use std::collections::VecDeque;
+
 #[allow(unused_imports)]
 use proconio::{
     fastout, input,
@@ -24,7 +26,44 @@ macro_rules! chmin {
 }
 
 pub fn main() {
-    f()
+    g()
+}
+
+fn g() {
+    input! {
+    n:usize,
+    m:usize,
+    xy:[(Usize1,Usize1);m]
+    }
+    let mut graph = vec![vec![]; n];
+    let mut indeg = vec![0; n];
+    for (x, y) in xy {
+        graph[x].push(y);
+        indeg[y] += 1;
+    }
+    let mut queue = VecDeque::new();
+    let mut res = vec![];
+    for i in 0..indeg.len() {
+        if indeg[i] == 0 {
+            queue.push_back(i);
+        }
+    }
+    while let Some(i) = queue.pop_front() {
+        res.push(i);
+        for &j in &graph[i] {
+            indeg[j] -= 1;
+            if indeg[j] == 0 {
+                queue.push_back(j);
+            }
+        }
+    }
+    let mut dp = vec![0; n];
+    for &i in &res {
+        for &j in &graph[i] {
+            chmax!(dp[j], dp[i] + 1);
+        }
+    }
+    println!("{}", dp.iter().max().unwrap());
 }
 
 fn f() {
