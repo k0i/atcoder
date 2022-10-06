@@ -26,7 +26,28 @@ macro_rules! chmin {
 }
 
 pub fn main() {
-    g()
+    h()
+}
+
+fn h() {
+    input! {
+    h:usize,
+    w:usize,
+    s:[Chars;h],
+    }
+    let mut dp = vec![vec![0; w + 1]; h + 1];
+    dp[1][1] = 1;
+
+    for i in 1..=h {
+        for j in 1..=w {
+            if s[i - 1][j - 1] == '#' {
+                continue;
+            }
+            dp[i][j] += dp[i - 1][j] + dp[i][j - 1];
+            dp[i][j] %= 1000000007;
+        }
+    }
+    println!("{}", dp[h][w] % 1000000007);
 }
 
 fn g() {
