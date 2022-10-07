@@ -11,20 +11,20 @@ pub fn main() {
     k:usize
         }
     let mut res = 0;
-    let MOD = 998244353;
+    let modulo = 998244353;
     let mut dp = vec![vec![0; 3010]; 51];
     dp[0][0] = 1;
     for i in 0..n {
         for j in 0..=k {
             for l in 1..=m {
-                dp[i + 1][j + l] += dp[i][j] % MOD;
-                dp[i + 1][j + l] %= MOD;
+                dp[i + 1][j + l] += dp[i][j] % modulo;
+                dp[i + 1][j + l] %= modulo;
             }
         }
     }
     for i in n..=k {
-        res += dp[n][i] % MOD;
-        res %= MOD;
+        res += dp[n][i] % modulo;
+        res %= modulo;
     }
-    println!("{}", res % MOD);
+    println!("{}", res % modulo);
 }

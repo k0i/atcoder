@@ -9,7 +9,7 @@ pub fn main() {
     n:usize,
     a:[usize;n]
         }
-    let MOD = 998244353;
+    let modulo = 998244353;
     let mut dp = vec![vec![0; 10]; n];
     dp[0][a[0]] = 1;
     for i in 1..n {
@@ -17,12 +17,12 @@ pub fn main() {
             let f = (j + a[i]) % 10;
             let g = (j * a[i]) % 10;
             dp[i][f] += dp[i - 1][j];
-            dp[i][f] %= MOD;
+            dp[i][f] %= modulo;
             dp[i][g] += dp[i - 1][j];
-            dp[i][g] %= MOD;
+            dp[i][g] %= modulo;
         }
     }
     for i in 0..10 {
-        println!("{}", dp[n - 1][i] % MOD);
+        println!("{}", dp[n - 1][i] % modulo);
     }
 }

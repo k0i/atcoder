@@ -48,7 +48,6 @@ fn i() {
     for i in (n / 2 + 1)..n + 1 {
         ans += dp[n][i];
     }
-    println!("{:?}", dp);
     println!("{}", ans);
 }
 

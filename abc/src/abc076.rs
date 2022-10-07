@@ -2,18 +2,18 @@ use proconio::input;
 use proconio::marker::Chars;
 fn main() {
     input! {
-        S: Chars,
-        T: Chars,
+        s: Chars,
+        t: Chars,
     }
     let mut start = !0;
-    if S.len() < T.len() {
+    if s.len() < t.len() {
         println!("UNRESTORABLE");
         return;
     }
-    for i in 0..=S.len() - T.len() {
+    for i in 0..=s.len() - t.len() {
         let mut flg = true;
-        for j in 0..T.len() {
-            if S[i + j] != '?' && S[i + j] != T[j] {
+        for j in 0..t.len() {
+            if s[i + j] != '?' && s[i + j] != t[j] {
                 flg = false;
                 break;
             }
@@ -26,11 +26,11 @@ fn main() {
         println!("UNRESTORABLE");
         return;
     }
-    let mut ans = S
+    let mut ans = s
         .iter()
         .map(|&x| if x == '?' { 'a' } else { x })
         .collect::<Vec<char>>();
-    for (ix, c) in T.iter().enumerate() {
+    for (ix, c) in t.iter().enumerate() {
         ans[start + ix] = *c;
     }
     println!("{}", ans.into_iter().collect::<String>());

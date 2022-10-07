@@ -27,19 +27,19 @@ pub fn main() {
         }
         let cnt = abc[1] + i;
         if cnt == 1 {
-            res += 1 * aCb(abc[2], i)
+            res += 1 * acb(abc[2], i)
         } else if cnt == 2 {
-            res += (2 * 4 + aCb(4, 2)) * aCb(abc[2], i)
+            res += (2 * 4 + acb(4, 2)) * acb(abc[2], i)
         } else if cnt == 3 {
-            res += 3 * 4 * 3 * aCb(abc[2], i)
+            res += 3 * 4 * 3 * acb(abc[2], i)
         } else if cnt == 4 {
-            res += 4 * 3 * 2 * aCb(abc[2], i)
+            res += 4 * 3 * 2 * acb(abc[2], i)
         };
     }
     println!("{}", res);
 }
 
-fn aCb(a: usize, b: usize) -> usize {
+fn acb(a: usize, b: usize) -> usize {
     let mut res = 1;
     for i in 0..b {
         res *= a - i;

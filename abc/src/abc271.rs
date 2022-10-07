@@ -15,7 +15,7 @@ pub fn main() {
     for i in 0..n {
         let (a, b) = ab[i];
         for j in 0..=s {
-            if (dp[i][j]) {
+            if dp[i][j] {
                 if j + a <= s {
                     dp[i + 1][j + a] = true;
                 }
