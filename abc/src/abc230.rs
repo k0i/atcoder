@@ -6,6 +6,21 @@ use proconio::{
 #[fastout]
 pub fn main() {
     input! {
+    a:u64
+    }
+    let sqrt = (a as f64).sqrt() as u64;
+    let mut ans = 0;
+    for i in 1..=sqrt {
+        ans += a / i - i;
+    }
+    ans *= 2;
+    for i in 1..=sqrt {
+        ans += 1;
+    }
+    println!("{}", ans);
+}
+fn d() {
+    input! {
     n:usize,
     d:i64,
     mut lr:[(i64,i64);n],
