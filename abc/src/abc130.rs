@@ -53,3 +53,18 @@ fn get(l: usize, r: usize, a: &[i64]) -> usize {
     }
     res as usize
 }
+
+fn c() {
+    input! {
+    w:f64,
+    h:f64,
+    x:usize,y:usize
+    }
+    let ans = w * h / 2.0;
+    let ans2 = if x * 2 == w as usize && y * 2 == h as usize {
+        1
+    } else {
+        0
+    };
+    println!("{} {}", ans, ans2);
+}
