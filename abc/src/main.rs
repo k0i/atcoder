@@ -98,11 +98,12 @@ mod abc269;
 mod abc271;
 mod abc272;
 mod agc019;
+mod arc098;
 mod arc128;
 mod arc142;
 mod arc148;
 mod cf2017qualc;
 mod pa_ken2019;
 fn main() {
-    abc188::main();
+    arc098::main();
 }
