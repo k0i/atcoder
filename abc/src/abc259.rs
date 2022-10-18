@@ -7,7 +7,68 @@ use proconio::{
 };
 #[fastout]
 pub fn main() {
-    c();
+    input! {
+    n:usize,
+    start:(i64,i64),
+    end:(i64,i64),
+    circles:[(i64,i64,i64);n],
+        }
+    let start_circle = on_circle(start, &circles);
+    let end_circle = on_circle(end, &circles);
+    if start_circle.is_none() || end_circle.is_none() {
+        println!("No");
+        return;
+    }
+    let mut tree = vec![vec![]; n];
+
+    for i in 0..n {
+        for j in i + 1..n {
+            if is_cross(circles[i], circles[j]) {
+                tree[i].push(j);
+                tree[j].push(i);
+            }
+        }
+    }
+    let mut queue = vec![];
+    let mut visited = vec![false; n];
+    queue.push(start_circle.unwrap());
+    while !queue.is_empty() {
+        let now = queue.pop().unwrap();
+        if now == end_circle.unwrap() {
+            println!("Yes");
+            return;
+        }
+        visited[now] = true;
+        for &next in &tree[now] {
+            if !visited[next] {
+                queue.push(next);
+            }
+        }
+    }
+    println!("No");
+}
+
+fn on_circle(p: (i64, i64), circles: &[(i64, i64, i64)]) -> Option<usize> {
+    for i in 0..circles.len() {
+        let (x, y, r) = circles[i];
+        if (x - p.0).pow(2) + (y - p.1).pow(2) == r.pow(2) {
+            return Some(i);
+        }
+    }
+    None
+}
+
+fn is_cross(c1: (i64, i64, i64), c2: (i64, i64, i64)) -> bool {
+    let (x1, y1, r1) = c1;
+    let (x2, y2, r2) = c2;
+    let d_pow = (x1 - x2).pow(2) + (y1 - y2).pow(2);
+    if d_pow > (r1 + r2).pow(2) {
+        return false;
+    }
+    if d_pow < (r1 - r2).pow(2) {
+        return false;
+    }
+    true
 }
 
 fn c() {
