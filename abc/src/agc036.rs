@@ -18,5 +18,4 @@ pub fn main() {
         let d = s / m + 1;
         println!("{} {} {} {} {} {}", 0, 0, m, 1, c, d);
     }
-    Ok(())
 }
