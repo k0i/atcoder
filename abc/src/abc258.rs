@@ -4,7 +4,25 @@ use proconio::{
     marker::{Bytes, Chars, Isize1, Usize1},
 };
 pub fn main() {
-    d()
+    c()
+}
+fn c() {
+    input! {
+        n: usize,
+        q: usize,
+        s: Chars,
+        ql: [(usize, usize); q]
+    }
+    let mut rot = 0;
+    for (qi, v) in ql {
+        if qi == 1 {
+            rot += v;
+            rot %= n;
+        } else {
+            let ind = (v - 1 + n - rot) % n;
+            println!("{}", s[ind]);
+        }
+    }
 }
 
 fn d() {
