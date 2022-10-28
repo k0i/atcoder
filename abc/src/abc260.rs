@@ -12,27 +12,6 @@ pub fn main() {
     c()
 }
 
-fn c() {
-    input! {
-      n: usize,
-      x: usize,
-      y: usize,
-    }
-
-    let mut blues = [0; 11];
-    let mut reds = [0; 11];
-    reds[n] = 1;
-
-    for i in (2..=n).rev() {
-        reds[i - 1] += reds[i];
-        blues[i] += reds[i] * x;
-        reds[i] = 0;
-        reds[i - 1] += blues[i];
-        blues[i - 1] += blues[i] * y;
-        blues[i] = 0;
-    }
-    println!("{}", blues[1]);
-}
 fn d() {
     input! {
         n: usize,

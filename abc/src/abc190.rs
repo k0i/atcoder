@@ -1,3 +1,5 @@
+use std::collections::HashSet;
+
 use itertools::Itertools;
 use proconio::{
     fastout, input,
@@ -5,6 +7,33 @@ use proconio::{
 };
 #[fastout]
 pub fn main() {
+    c()
+}
+
+fn c() {
+    input! {n:usize,m:usize,abm:[(usize,usize);m],k:usize,cdk:[(usize,usize);k]}
+    let mut ans = 0;
+    for i in 0..=1 << k {
+        let mut s = HashSet::new();
+        for j in 0..k {
+            if i & 1 << j != 0 {
+                s.insert(cdk[j].0);
+            } else {
+                s.insert(cdk[j].1);
+            }
+        }
+        let mut cnt = 0;
+        for i in 0..m {
+            if s.contains(&abm[i].0) && s.contains(&abm[i].1) {
+                cnt += 1;
+            }
+        }
+        ans = ans.max(cnt);
+    }
+    println!("{}", ans);
+}
+
+fn d() {
     input! {
     n:u64
         }
@@ -20,5 +49,4 @@ pub fn main() {
         }
         i += 1;
     }
-    println!("{:?}", res * 2);
 }
