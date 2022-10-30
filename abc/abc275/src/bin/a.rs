@@ -1,21 +1,15 @@
-use itertools::Itertools;
-use proconio::{
-    fastout, input,
-    marker::{Bytes, Chars, Isize1, Usize1},
-};
+use proconio::{fastout, input};
 #[fastout]
 pub fn main() {
     input! {
     n:usize,
-    h:[i64;n],
+    h:[usize;n],
         }
     let mut highest = 0;
-    let mut higiest_v = 0;
     for i in 0..n {
-        if higiest_v < h[i] {
-            highest = i + 1;
-            higiest_v = h[i];
+        if h[highest] < h[i] {
+            highest = i;
         }
     }
-    println!("{}", highest);
+    println!("{}", highest + 1);
 }

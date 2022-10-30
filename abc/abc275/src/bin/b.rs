@@ -1,8 +1,4 @@
-use itertools::Itertools;
-use proconio::{
-    fastout, input,
-    marker::{Bytes, Chars, Isize1, Usize1},
-};
+use proconio::{fastout, input};
 #[fastout]
 pub fn main() {
     input! {

@@ -1,14 +1,10 @@
 use itertools::Itertools;
-use proconio::{
-    fastout, input,
-    marker::{Bytes, Chars, Isize1, Usize1},
-};
+use proconio::{fastout, input, marker::Chars};
 #[fastout]
 pub fn main() {
     input! {
     s:[Chars;9]
         }
-    let mut ans = 0;
     let mut coor = vec![];
     for i in 0..9 {
         for j in 0..9 {
@@ -23,6 +19,7 @@ pub fn main() {
     let mut res = 0;
     for i in 0..comb.len() {
         let (a, b, c, d) = (comb[i][0], comb[i][1], comb[i][2], comb[i][3]);
+        // 円順列6通り
         if check(a, b, c, d)
             || check(a, b, d, c)
             || check(a, c, b, d)
