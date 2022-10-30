@@ -117,5 +117,5 @@ mod arc148;
 mod cf2017qualc;
 mod pa_ken2019;
 fn main() {
-    abc161::main();
+    abc232::main();
 }
