@@ -5,7 +5,7 @@ pub fn main() {
         n:usize
     }
     for i in 0..1 << n {
-        let mut temp: String = String::new();
+        let mut temp = String::new();
         for j in (0..n).rev() {
             if i & (1 << j) != 0 {
                 temp.push(')');
