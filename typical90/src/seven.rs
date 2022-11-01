@@ -14,7 +14,6 @@ pub fn main() {
     a.sort_unstable();
     for i in b {
         let cnt = match a.binary_search(&i) {
-            Ok(x) => x,
             Err(x) => {
                 if x == 0 {
                     0
@@ -22,6 +21,7 @@ pub fn main() {
                     x - 1
                 }
             }
+            Ok(x) => x,
         };
         if a.len() == 1 {
             println!("{}", (a[0] - i).abs());

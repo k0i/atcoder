@@ -15,5 +15,5 @@ mod twenty_six;
 mod twenty_two;
 mod two;
 fn main() {
-    fifty::main();
+    seven::main();
 }
