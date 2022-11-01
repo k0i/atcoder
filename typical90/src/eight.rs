@@ -13,7 +13,7 @@ pub fn main() {
     let m: u64 = 1000000007;
     dp[0][0] = 1;
     for i in 0..n {
-        for j in 0..ATCODER.len() + 1 {
+        for j in 0..=ATCODER.len() {
             dp[i + 1][j] += dp[i][j];
             dp[i + 1][j] %= m;
             if j < ATCODER.len() && ATCODER.chars().nth(j).unwrap() == s[i] {
@@ -23,5 +23,5 @@ pub fn main() {
         }
     }
     let ans = dp[n][ATCODER.len()];
-    println!("{}", ans);
+    println!("{}", ans % m);
 }
