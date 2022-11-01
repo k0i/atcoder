@@ -11,11 +11,11 @@ pub fn main() {
         }
     let mut left = 0;
     let mut right = l;
-    let temp = Rc::new(a);
+    let temp = a;
 
     while right - left > 1 {
         let mid = (left + right) / 2;
-        match cut(mid, temp.clone(), l, k) {
+        match cut(mid, &temp, l, k) {
             true => left = mid,
             false => right = mid,
         }
@@ -23,7 +23,7 @@ pub fn main() {
     println!("{}", left);
 }
 
-fn cut(target: u32, a: Rc<Vec<u32>>, l: u32, count: usize) -> bool {
+fn cut(target: u32, a: &[u32], l: u32, count: usize) -> bool {
     let mut prev = 0;
     let mut cut = 0;
     for i in a.iter() {
