@@ -12,7 +12,6 @@ pub fn main() {
     println!("{}", adjascent.diameter() + 1);
 }
 
-#[derive(Debug)]
 pub struct AdjacencyList {
     dimension: usize,
     list: Vec<Vec<usize>>,
