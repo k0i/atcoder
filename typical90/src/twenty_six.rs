@@ -1,4 +1,4 @@
-use std::collections::{VecDeque, HashSet};
+use std::collections::{HashSet, VecDeque};
 
 #[allow(unused_imports)]
 use proconio::{
@@ -12,12 +12,12 @@ pub fn main() {
     }
     let mut a = vec![vec![]; n];
     for edge in t {
-        a[(edge.0) - 1].push(edge.1-1);
-        a[(edge.1) - 1].push(edge.0-1);
+        a[(edge.0) - 1].push(edge.1 - 1);
+        a[(edge.1) - 1].push(edge.0 - 1);
     }
     let mut visited = vec![false; n];
-let mut colors = vec![false;n];
-    let mut res1 =HashSet::new();
+    let mut colors = vec![false; n];
+    let mut res1 = HashSet::new();
     let mut res2 = HashSet::new();
     let mut stack = VecDeque::new();
     stack.push_front(0);
@@ -30,19 +30,19 @@ let mut colors = vec![false;n];
         let next = a[current].clone();
         let c = colors[current];
         next.into_iter().for_each(|x| {
-            colors[x]=!c;
+            colors[x] = !c;
             if c {
-                res1.insert(x+1);
+                res1.insert(x + 1);
             } else {
-                res2.insert(x+1);
+                res2.insert(x + 1);
             };
             stack.push_front(x)
         });
     }
 
     if res1.len() >= n / 2 {
-       res1.iter().take(n/2).for_each(move |x| print!("{} ", x));
+        res1.iter().take(n / 2).for_each(move |x| print!("{} ", x));
     } else {
-       res2.iter().take(n/2).for_each(move |x| print!("{} ", x));
+        res2.iter().take(n / 2).for_each(move |x| print!("{} ", x));
     }
 }

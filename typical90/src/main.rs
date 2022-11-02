@@ -11,9 +11,10 @@ mod three;
 mod twelve;
 mod twenty;
 mod twenty_four;
+mod twenty_seven;
 mod twenty_six;
 mod twenty_two;
 mod two;
 fn main() {
-    eight::main();
+    twenty_seven::main();
 }
