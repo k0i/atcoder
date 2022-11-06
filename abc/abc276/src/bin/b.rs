@@ -1,8 +1,4 @@
-use itertools::Itertools;
-use proconio::{
-    fastout, input,
-    marker::{Bytes, Chars, Isize1, Usize1},
-};
+use proconio::{fastout, input, marker::Usize1};
 #[fastout]
 pub fn main() {
     input! {
@@ -12,25 +8,17 @@ pub fn main() {
         }
 
     let mut res = vec![vec![]; n];
-    for i in 0..m {
-        let (a, b) = ab[i];
+    for i in ab {
+        let (a, b) = i;
         res[a].push(b);
         res[b].push(a);
     }
-    for i in 0..n {
-        res[i].sort();
-    }
+    res.iter_mut().for_each(|x| x.sort());
 
-    for i in 0..n {
-        let d = res[i].len();
-        print!("{} ", d);
-        let i: Vec<_> = res[i]
-            .iter()
-            .map(|x| {
-                let y = x + 1;
-                return y;
-            })
-            .collect();
-        println!("{}", i.into_iter().join(" "));
+    for i in res {
+        print!("{} ", i.len());
+        for j in i {
+            print!("{} ", j + 1);
+        }
     }
 }

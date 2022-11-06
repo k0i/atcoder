@@ -1,8 +1,5 @@
 use itertools::Itertools;
-use proconio::{
-    fastout, input,
-    marker::{Bytes, Chars, Isize1, Usize1},
-};
+use proconio::{fastout, input};
 #[fastout]
 pub fn main() {
     input! {
@@ -32,11 +29,7 @@ pub fn main() {
     let mut sorted = p.drain(ind + 1..).collect_vec();
     sorted.sort_by(|a, b| b.cmp(a));
     p.append(&mut sorted);
-    for i in 0..n {
-        if i == n - 1 {
-            println!("{}", p[i]);
-        } else {
-            print!("{} ", p[i]);
-        }
+    for i in p {
+        print!("{} ", i);
     }
 }
