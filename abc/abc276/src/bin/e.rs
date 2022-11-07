@@ -1,6 +1,5 @@
-use std::collections::HashMap;
-
 use proconio::{fastout, input, marker::Chars};
+use std::collections::HashMap;
 #[fastout]
 pub fn main() {
     input! {
