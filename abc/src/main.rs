@@ -90,6 +90,7 @@ mod abc241;
 mod abc242;
 mod abc243;
 mod abc245;
+mod abc246;
 mod abc247;
 mod abc248;
 mod abc249;
@@ -124,5 +125,5 @@ mod arc148;
 mod cf2017qualc;
 mod pa_ken2019;
 fn main() {
-    abc072::main();
+    abc246::main();
 }

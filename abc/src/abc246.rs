@@ -1,0 +1,44 @@
+use itertools::Itertools;
+use proconio::{
+    fastout, input,
+    marker::{Bytes, Chars, Isize1, Usize1},
+};
+pub fn main() {
+    input! {
+     n:usize,
+    mut k:usize,
+     x:usize,
+         mut a:[usize;n]
+         }
+
+    a.sort();
+    a.reverse();
+    for i in 0..n {
+        if a[i] < x {
+            break;
+        }
+        let y = a[i] / x;
+        if k >= y {
+            a[i] -= x * y;
+            k -= y;
+        } else {
+            a[i] -= x * k;
+            println!("{}", a.iter().sum::<usize>());
+            return;
+        }
+        if k == 0 {
+            println!("{}", a.iter().sum::<usize>());
+            return;
+        }
+    }
+    a.sort();
+    a.reverse();
+    for i in 0..n {
+        a[i] = 0;
+        k -= 1;
+        if k == 0 {
+            break;
+        }
+    }
+    println!("{}", a.iter().sum::<usize>());
+}
