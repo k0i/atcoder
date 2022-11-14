@@ -125,5 +125,5 @@ mod arc148;
 mod cf2017qualc;
 mod pa_ken2019;
 fn main() {
-    abc246::main();
+    abc040::main();
 }

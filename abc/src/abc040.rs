@@ -24,6 +24,21 @@ macro_rules! chmin {
 #[fastout]
 pub fn main() {
     input! {
+        n: usize,
+    }
+    let mut ans = 100000;
+    for i in 1..=n {
+        if i * i > n {
+            break;
+        }
+        let j = n / i;
+        ans = ans.min(n - (i * j) + j - i);
+    }
+    println!("{}", ans);
+}
+
+fn d() {
+    input! {
     n:usize,
     a:[i64;n],
         }
