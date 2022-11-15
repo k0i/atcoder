@@ -13,6 +13,8 @@ mod fourty_three;
 mod fourty_two;
 mod one;
 mod seven;
+mod seventy;
+mod seventy_two;
 mod sixteen;
 mod sixty_four;
 mod sixty_nine;
@@ -34,5 +36,5 @@ mod twenty_two;
 mod two;
 
 fn main() {
-    sixty_nine::main();
+    seventy_two::main();
 }
