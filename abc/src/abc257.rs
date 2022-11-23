@@ -6,6 +6,33 @@ use proconio::{
 #[fastout]
 pub fn main() {
     input! {
+        n: usize,
+        s: Bytes,
+        w: [i64; n],
+    }
+    let mut v = vec![];
+    for i in 0..n {
+        v.push((w[i], (s[i] - b'0') as i64));
+    }
+    v.sort_by_key(|(a, _)| *a);
+    let mut cnt = v.iter().filter(|(_, b)| *b == 1).count();
+    let mut res = cnt;
+    for i in 0..n {
+        if v[i].1 == 1 {
+            cnt -= 1;
+        } else {
+            cnt += 1;
+        }
+        if i + 1 < n && v[i].0 == v[i + 1].0 {
+            continue;
+        }
+        res = res.max(cnt);
+    }
+    println!("{}", res);
+}
+
+fn d() {
+    input! {
     n:usize,
     xy:[(i64,i64,i64);n]
         }
