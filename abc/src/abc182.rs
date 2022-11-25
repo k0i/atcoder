@@ -5,6 +5,30 @@ use proconio::{
 };
 #[fastout]
 pub fn main() {
+    input! {
+        n: usize,
+        a: [i128; n],
+    }
+
+    let mut cm = vec![0; n + 1];
+    for i in 0..n {
+        cm[i + 1] = cm[i] + a[i];
+    }
+
+    let mut max = vec![0; n + 2];
+    for i in 0..n + 1 {
+        max[i + 1] = std::cmp::max(max[i], cm[i]);
+    }
+    let mut ans = 0;
+    let mut cur = 0;
+    for i in 0..n + 1 {
+        ans = std::cmp::max(ans, cur + max[i + 1]);
+        cur += cm[i];
+    }
+
+    println!("{}", ans);
+}
+fn c() {
     input! {n:Chars}
     let m: Vec<u64> = n.iter().map(|x| x.to_digit(10).unwrap() as u64).collect();
     let sum: u64 = m.iter().sum();
