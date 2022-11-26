@@ -5,6 +5,7 @@
     unused_mut,
     unused_imports
 )]
+mod abc003;
 mod abc004;
 mod abc005;
 mod abc010;
@@ -135,5 +136,5 @@ mod arc148;
 mod cf2017qualc;
 mod pa_ken2019;
 fn main() {
-    abc030::main();
+    abc003::main();
 }
