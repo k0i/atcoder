@@ -12,7 +12,6 @@ pub fn main() {
 
     let len = s.len();
     let c = ['a', 't', 'c', 'o', 'd', 'e', 'r'];
-
     for i in 0..len {
         let si = s.chars().nth(i).unwrap();
         let ti = t.chars().nth(i).unwrap();
