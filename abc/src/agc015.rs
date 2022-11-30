@@ -5,6 +5,25 @@ use proconio::{
 };
 #[fastout]
 pub fn main() {
+    a()
+}
+
+fn a() {
+    input! {
+    n:usize,
+    a:usize,
+    b:usize
+        }
+    if a > b || (n == 1 && a != b) {
+        println!("0");
+        return;
+    }
+    let min = a * (n - 1) + b;
+    let max = b * (n - 1) + a;
+    println!("{}", max - min + 1);
+}
+
+fn b() {
     input! {
     s:Chars
         }
