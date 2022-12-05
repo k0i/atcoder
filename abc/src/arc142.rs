@@ -7,6 +7,36 @@ use proconio::{
 };
 #[fastout]
 pub fn main() {
+    input! { n: usize }
+    let mut ans = vec![vec![0; n]; n];
+    let mut val = 1;
+    for i in 0..n {
+        for j in 0..n {
+            ans[i][j] = val;
+            val += 1;
+        }
+    }
+    for i in 0..n {
+        if i % 2 == 1 {
+            continue;
+        }
+        if i + 1 == n {
+            continue;
+        }
+
+        let mut c = ans[i + 1].clone();
+        let mut d = ans[i].clone();
+        std::mem::swap(&mut ans[i], &mut c);
+        std::mem::swap(&mut ans[i + 1], &mut d);
+    }
+    for i in 0..n {
+        for j in 0..n {
+            print!("{} ", ans[i][j]);
+        }
+        println!();
+    }
+}
+fn a() {
     input! {
      n:usize,
     mut k:Chars
