@@ -5,8 +5,26 @@ use proconio::{
 };
 #[fastout]
 pub fn main() {
-    c()
+    d()
 }
+
+fn d() {
+    input! {
+        n: usize,
+        s: [String; n],
+    }
+    let mut x: (i64, i64) = (1, 1);
+
+    for i in 0..s.len() {
+        if s[i] == "AND" {
+            x.1 = x.1 * 2 + x.0;
+        } else {
+            x.0 = x.0 * 2 + x.1;
+        }
+    }
+    println!("{}", x.0);
+}
+
 fn c() {
     input! {
         n:usize,
