@@ -1,9 +1,22 @@
+use itertools::Itertools;
 #[allow(unused_imports)]
 use proconio::{
     fastout, input,
     marker::{Bytes, Chars, Isize1, Usize1},
 };
+#[fastout]
 pub fn main() {
+    input! {
+    a:u128,
+    b:f64,
+       }
+    let b = (b * 100.0).round() as u128;
+    println!("{:?}", b);
+    let ans = a * b / 100;
+    println!("{}", ans);
+}
+
+fn d() {
     input! {mut n:usize}
     let mut p = vec![];
     if n == 1 {

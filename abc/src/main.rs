@@ -156,5 +156,5 @@ mod cf2017qualc;
 mod m_solutions;
 mod pa_ken2019;
 fn main() {
-    abc050::main();
+    abc169::main();
 }
