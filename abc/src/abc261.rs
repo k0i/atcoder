@@ -3,7 +3,7 @@ use proconio::{
     fastout, input,
     marker::{Bytes, Chars, Isize1, Usize1},
 };
-use std::collections::HashMap;
+use std::collections::{HashMap, HashSet};
 #[allow(dead_code)]
 fn update<T: PartialOrd>(value: T, target: &mut T, cond: std::cmp::Ordering) {
     if value.partial_cmp(target) == Some(cond) {
@@ -25,7 +25,7 @@ macro_rules! chmin {
 }
 
 pub fn main() {
-    d()
+    c()
 }
 
 fn d() {
