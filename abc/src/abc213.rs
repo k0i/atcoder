@@ -6,6 +6,40 @@ use proconio::{
 #[fastout]
 pub fn main() {
     input! {
+        n: usize,
+    }
+    let mut g = vec![vec![]; n];
+    for _ in 0..n - 1 {
+        input! {
+            a: Usize1,
+            b: Usize1,
+        }
+        g[a].push(b);
+        g[b].push(a);
+    }
+    for i in 0..n {
+        g[i].sort();
+    }
+    let mut res = vec![];
+    println!("{:?}", g);
+    dfs(0, n, &g, &mut res);
+    println!("{}", res.iter().map(|x| (x + 1).to_string()).join(" "));
+}
+
+fn dfs(v: usize, p: usize, g: &Vec<Vec<usize>>, res: &mut Vec<usize>) {
+    res.push(v);
+    println!("outer:{:?}", res);
+    for &u in &g[v] {
+        if p != u {
+            dfs(u, v, g, res);
+            res.push(v);
+            println!("inner{:?}", res);
+        }
+    }
+}
+
+fn c() {
+    input! {
     h:usize,
     w:usize,
     n:usize,
@@ -37,7 +71,7 @@ pub fn main() {
     }
 }
 
-use std::cmp::Ordering;
+use std::{cmp::Ordering, collections::VecDeque};
 
 // Returns an iterator to specified bound that pointing to the first element in the range.
 pub trait Bound<T> {
