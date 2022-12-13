@@ -1,9 +1,34 @@
+use std::collections::HashMap;
+
 use itertools::Itertools;
 use proconio::{
     fastout, input,
     marker::{Bytes, Chars, Isize1, Usize1},
 };
 pub fn main() {
+    input! {
+        n: usize, k : i64,
+        a: [i64; n],
+    };
+
+    let mut sa = vec![0_i64; n + 1];
+    for i in 0..n {
+        sa[i + 1] = sa[i] + a[i];
+    }
+
+    let mut ma = HashMap::new();
+    let mut res = 0_usize;
+    for r in 1..=n {
+        ma.entry(sa[r - 1]).and_modify(|e| *e += 1).or_insert(1);
+        let key = sa[r] - k;
+        if ma.contains_key(&key) {
+            res += ma.get(&key).unwrap()
+        }
+    }
+    println!("{}", res);
+}
+
+fn c() {
     input! {
     n:usize,
     x:u128,
