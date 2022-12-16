@@ -1,5 +1,6 @@
-use std::collections::VecDeque;
+use std::collections::{HashSet, VecDeque};
 
+use itertools::Itertools;
 #[allow(unused_imports)]
 use proconio::{
     fastout, input,
@@ -7,6 +8,35 @@ use proconio::{
 };
 #[fastout]
 pub fn main() {
+    input! {
+    n:usize,
+    mut a:[(i64,i64);n]
+        }
+    let mut cmb = a.into_iter().permutations(2).collect::<Vec<_>>();
+    let mut hs = HashSet::new();
+    for v in cmb {
+        let (x1, y1) = v[0];
+        let (x2, y2) = v[1];
+        let dx = x2 - x1;
+        let dy = y2 - y1;
+        let g = gcd(dx, dy);
+        if g == 0 {
+            continue;
+        }
+        hs.insert((dx / g, dy / g));
+        hs.insert((dx * -1 / g, dy * -1 / g));
+    }
+    println!("{}", hs.len());
+}
+
+fn gcd(x: i64, y: i64) -> i64 {
+    if y == 0 {
+        return x;
+    }
+    gcd(y, x % y)
+}
+
+fn c() {
     input! {
     n:usize
         }

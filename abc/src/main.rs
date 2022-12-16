@@ -168,5 +168,5 @@ mod cf2017qualc;
 mod m_solutions;
 mod pa_ken2019;
 fn main() {
-    arc078::main();
+    abc226::main();
 }
