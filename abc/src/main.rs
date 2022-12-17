@@ -168,6 +168,7 @@ mod arc148;
 mod cf2017qualc;
 mod m_solutions;
 mod pa_ken2019;
+mod zone2021;
 fn main() {
-    abc173::main();
+    zone2021::main();
 }
