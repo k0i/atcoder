@@ -168,7 +168,8 @@ mod arc148;
 mod cf2017qualc;
 mod m_solutions;
 mod pa_ken2019;
+mod panasonic2020;
 mod zone2021;
 fn main() {
-    zone2021::main();
+    panasonic2020::main();
 }
