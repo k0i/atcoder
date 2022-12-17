@@ -154,6 +154,7 @@ mod agc028;
 mod agc035;
 mod agc036;
 mod arc014;
+mod arc070;
 mod arc078;
 mod arc087;
 mod arc098;
@@ -168,5 +169,5 @@ mod cf2017qualc;
 mod m_solutions;
 mod pa_ken2019;
 fn main() {
-    abc226::main();
+    arc070::main();
 }
