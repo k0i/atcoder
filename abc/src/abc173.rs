@@ -1,3 +1,5 @@
+use std::cmp::Reverse;
+
 use itertools::Itertools;
 use proconio::{
     fastout, input,
@@ -5,6 +7,15 @@ use proconio::{
 };
 #[fastout]
 pub fn main() {
+    input! {
+        n: usize,
+        mut a: [i64; n],
+    }
+    a.sort_by_key(|k| Reverse(*k));
+    let ans: i64 = (0..n - 1).map(|i| a[(i + 1) / 2]).sum();
+    println!("{}", ans);
+}
+fn c() {
     input! {
     h:usize,
     w:usize,
