@@ -169,5 +169,5 @@ mod cf2017qualc;
 mod m_solutions;
 mod pa_ken2019;
 fn main() {
-    arc070::main();
+    arc115::main();
 }

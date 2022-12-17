@@ -1,10 +1,37 @@
+use std::collections::{HashMap, HashSet};
+
 use itertools::Itertools;
 use proconio::{
     fastout, input,
     marker::{Bytes, Chars, Isize1, Usize1},
 };
+
 #[fastout]
 pub fn main() {
+    input! {
+        n: usize,
+    }
+
+    let mut aa: Vec<usize> = vec![2; n];
+    aa[0] = 1;
+
+    for i in 1..(n + 1) / 2 {
+        for j in 2.. {
+            if (i + 1) * j - 1 >= n {
+                break;
+            }
+            aa[(i + 1) * j - 1] = std::cmp::max(aa[(i + 1) * j - 1], aa[i] + 1);
+        }
+    }
+    println!(
+        "{}",
+        aa.iter()
+            .map(|x| x.to_string())
+            .collect::<Vec<String>>()
+            .join(" ")
+    );
+}
+fn b() {
     input! {
         n: usize,
         c: [[usize;n]; n],
