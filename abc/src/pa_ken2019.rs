@@ -26,7 +26,26 @@ macro_rules! chmin {
 
 #[fastout]
 pub fn main() {
-    d()
+    c()
+}
+
+fn c() {
+    input! {
+    n:usize,
+    m:usize,
+     a:[[usize;m];n]
+        }
+    let mut ans = 0;
+    let collec = (0..m).combinations(2).collect::<Vec<_>>();
+    for i in 0..collec.len() {
+        let mut temp = 0;
+        let current = collec[i].clone();
+        for j in 0..n {
+            temp += a[j][current[0]].max(a[j][current[1]]);
+        }
+        ans = std::cmp::max(ans, temp);
+    }
+    println!("{}", ans);
 }
 
 fn d() {
