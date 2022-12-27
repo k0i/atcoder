@@ -6,6 +6,18 @@ use proconio::{
 #[fastout]
 pub fn main() {
     input! {
+        h: usize,
+        _: usize,
+        s: [String; h]
+    }
+    println!(
+        "{}",
+        s.iter()
+            .fold(0, |t, s| t + s.chars().filter(|&c| c == '#').count())
+    );
+}
+fn d() {
+    input! {
         mut k: usize,
     }
     let mut ans = 1usize;
