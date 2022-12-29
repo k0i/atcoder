@@ -1,3 +1,5 @@
+use std::cmp::Ordering;
+
 #[allow(unused_imports)]
 use proconio::{
     fastout, input,
@@ -5,6 +7,41 @@ use proconio::{
 };
 #[fastout]
 pub fn main() {
+    input! {
+    q:usize,
+    }
+    let mut h = std::collections::BinaryHeap::new();
+    let mut sum = 0;
+
+    for _ in 0..q {
+        input! {
+        n:usize
+        }
+        match n {
+            1 => {
+                input! {
+                mut x:i64
+                }
+                x -= sum;
+                x = -x;
+                h.push(x);
+            }
+            2 => {
+                input! {
+                mut x:i64
+                }
+                sum += x;
+            }
+            _ => {
+                let mut x = h.pop().unwrap();
+                x = -x;
+                x += sum;
+                println!("{}", x);
+            }
+        }
+    }
+}
+fn c() {
     input! {n:usize,m:usize,mut a:[i64;n],mut b:[i64;m]}
     a.sort_unstable();
     b.sort_unstable();
@@ -18,8 +55,6 @@ pub fn main() {
     }
     println!("{:?}", min);
 }
-
-use std::cmp::Ordering;
 
 // Returns an iterator to specified bound that pointing to the first element in the range.
 pub trait Bound<T> {
