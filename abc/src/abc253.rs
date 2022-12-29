@@ -21,7 +21,6 @@ pub fn main() {
     let b_sum = (b + (bm * b)) * bm / 2;
     let lcm_sum = (lcm + (lcm_m * lcm)) * lcm_m / 2;
     println!("{}", sum - a_sum - b_sum + lcm_sum);
-    println!("{}", lcm);
 }
 
 fn gcd(a: u64, b: u64) -> u64 {
