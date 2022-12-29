@@ -178,11 +178,12 @@ mod arc142;
 mod arc145;
 mod arc148;
 mod cf2017qualc;
+mod keyence2019;
 mod keyence2020;
 mod m_solutions;
 mod pa_ken2019;
 mod panasonic2020;
 mod zone2021;
 fn main() {
-    abc030::main();
+    keyence2019::main();
 }
