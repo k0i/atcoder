@@ -3,8 +3,49 @@ use proconio::{
     fastout, input,
     marker::{Bytes, Chars, Isize1, Usize1},
 };
-#[fastout]
 pub fn main() {
+    input! {
+    n:u128
+    }
+    let mut prime = vec![true; 1000001];
+    prime[0] = false;
+    prime[1] = false;
+    for i in 2..1000001 {
+        if prime[i] {
+            for j in 2.. {
+                if i * j >= 1000000 {
+                    break;
+                }
+                prime[i * j] = false;
+            }
+        }
+    }
+    let mut ans = 0;
+    let mut primes = vec![];
+    for i in 2..1000001 {
+        if prime[i] {
+            primes.push(i as u128);
+        }
+    }
+    'outer: for i in 0..primes.len() {
+        for j in i..primes.len() {
+            if i == j {
+                continue;
+            }
+            if primes[i] > n
+                || primes[j] > n
+                || primes[i] * primes[j] > n
+                || primes[i] * primes[j] * primes[j] > n
+                || primes[i] * primes[j] * primes[j] * primes[j] > n
+            {
+                continue 'outer;
+            }
+            ans += 1;
+        }
+    }
+    println!("{}", ans);
+}
+fn c() {
     input! {
     n: usize,
     q: usize,
