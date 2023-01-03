@@ -7,6 +7,31 @@ use proconio::{
 };
 pub fn main() {
     input! {
+       mut x: usize,
+        y: usize,
+        a: usize,
+        b: usize,
+    }
+
+    let mut exp = 0;
+
+    while x * a - x < b {
+        if x * a >= y {
+            println!("{}", exp);
+            return;
+        }
+
+        exp += 1;
+        x *= a;
+    }
+
+    exp += (y - 1 - x) / b;
+
+    println!("{}", exp);
+}
+
+fn c() {
+    input! {
     n:u64
         }
     let mut div: u64 = 1;
