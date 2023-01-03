@@ -182,6 +182,7 @@ mod arc145;
 mod arc148;
 mod cf2015qualb;
 mod cf2017qualc;
+mod jsc2019qual;
 mod keyence2019;
 mod keyence2020;
 mod m_solutions;
@@ -189,5 +190,5 @@ mod pa_ken2019;
 mod panasonic2020;
 mod zone2021;
 fn main() {
-    abc211::main();
+    jsc2019qual::main();
 }
