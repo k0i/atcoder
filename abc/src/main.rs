@@ -193,5 +193,5 @@ mod pa_ken2019;
 mod panasonic2020;
 mod zone2021;
 fn main() {
-    abc078::main();
+    abc243::main();
 }

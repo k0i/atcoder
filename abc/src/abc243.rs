@@ -8,6 +8,36 @@ use proconio::{
 #[fastout]
 pub fn main() {
     input! {
+    n:usize,
+    mut x:usize,
+    mut s:Chars,
+            }
+    let mut i = 0;
+    let mut ss = vec![];
+    for i in s {
+        if i == 'U' && ss.last().unwrap_or(&'U') != &'U' {
+            ss.pop();
+            continue;
+        }
+        ss.push(i);
+    }
+    for i in ss {
+        match i {
+            'U' => x /= 2,
+            'R' => {
+                x *= 2;
+                x += 1;
+            }
+            _ => {
+                x *= 2;
+            }
+        }
+    }
+    println!("{}", x);
+}
+
+fn c() {
+    input! {
         n: usize,
         mut xy: [(usize, usize); n],
         s: Chars,
