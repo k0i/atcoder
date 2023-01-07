@@ -6,6 +6,40 @@ use proconio::{
 #[fastout]
 pub fn main() {
     input! {
+        n: usize,
+        k: usize,
+        a: [usize; n],
+    }
+
+    let mut sum = vec![0];
+    let mut seen_at = vec![n; n];
+    seen_at[0] = 0;
+    let mut loop_first = n;
+
+    for i in 0..n {
+        let next_sum = sum[i] + a[sum[i] % n];
+        sum.push(next_sum);
+        if seen_at[next_sum % n] < n {
+            loop_first = seen_at[next_sum % n];
+            break;
+        }
+        seen_at[next_sum % n] = i + 1;
+    }
+
+    if k < sum.len() {
+        println!("{}", sum[k]);
+        return;
+    }
+    let loop_interval = sum.len() - loop_first - 1;
+    let inc_per_loop = sum.last().unwrap() - sum[loop_first];
+    let q = (k - loop_first) / loop_interval;
+    let r = (k - loop_first) % loop_interval;
+    let ans = q * inc_per_loop + sum[loop_first + r];
+    println!("{}", ans);
+}
+
+fn c() {
+    input! {
     n:usize
         }
     let mut a = vec![];
