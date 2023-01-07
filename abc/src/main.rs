@@ -192,7 +192,8 @@ mod keyence2020;
 mod m_solutions;
 mod pa_ken2019;
 mod panasonic2020;
+mod sumitob2019;
 mod zone2021;
 fn main() {
-    abc172::main();
+    sumitob2019::main();
 }
