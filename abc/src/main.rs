@@ -188,6 +188,7 @@ mod arc145;
 mod arc148;
 mod cf2015qualb;
 mod cf2017qualc;
+mod diverta2019_2;
 mod jsc2019qual;
 mod keyence2019;
 mod keyence2020;
@@ -197,5 +198,5 @@ mod panasonic2020;
 mod sumitob2019;
 mod zone2021;
 fn main() {
-    agc022::main();
+    diverta2019_2::main();
 }
