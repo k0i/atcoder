@@ -8,38 +8,50 @@ use proconio::{
 #[fastout]
 pub fn main() {
     input! {
-    n:usize,m:usize,
-    s:[String;n],
-    t:[String;m]
-        }
-
-    let mut usable = HashSet::new();
-    let t_h = HashSet::from_iter(t);
-    for k in 1..=16 {
-        for i in s.iter().permutations(n) {
-            let mut temp = String::new();
-            for j in 0..i.len() {
-                temp.push_str(i[j]);
-                if j != i.len() - 1 {
-                    for l in 0..k {
-                        temp.push('_');
-                    }
-                }
-            }
-            usable.insert(temp);
-        }
+        n: usize,
+        m: usize,
+        s: [String; n],
+        t: [String; m],
     }
-    let d: Vec<_> = usable.difference(&t_h).collect();
-    if d.len() == 0 {
+    let mut len = n - 1;
+    for i in 0..n {
+        len += s[i].len();
+    }
+    if 16 < len {
         println!("-1");
         return;
+    }
+    let t = t.into_iter().collect::<HashSet<String>>();
+    for s in s.iter().permutations(n) {
+        if let Some(x) = solve(n, "".to_string(), 0, &s, 16 - len + 1, &t) {
+            println!("{}", x);
+            return;
+        }
+    }
+    println!("-1");
+}
+
+fn solve(
+    n: usize,
+    prefix: String,
+    i: usize,
+    s: &Vec<&String>,
+    m: usize,
+    t: &HashSet<String>,
+) -> Option<String> {
+    let mut x = prefix + s[i];
+    if i == n - 1 {
+        if !t.contains(&x) && x.len() >= 3 {
+            return Some(x);
+        }
     } else {
-        for i in d.iter() {
-            if i.len() <= 16 && i.len() >= 3 {
-                println!("{}", i);
-                return;
+        for j in 0..m {
+            x += "_";
+            let ret = solve(n, x.clone(), i + 1, s, m - j, t);
+            if ret.is_some() {
+                return ret;
             }
         }
-        println!("-1");
     }
+    return None;
 }
