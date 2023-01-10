@@ -32,6 +32,7 @@ mod abc048;
 mod abc050;
 mod abc051;
 mod abc053;
+mod abc057;
 mod abc058;
 mod abc061;
 mod abc064;
@@ -198,5 +199,5 @@ mod panasonic2020;
 mod sumitob2019;
 mod zone2021;
 fn main() {
-    diverta2019_2::main();
+    abc057::main();
 }
