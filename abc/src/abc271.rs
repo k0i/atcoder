@@ -1,3 +1,5 @@
+use std::collections::HashSet;
+
 use itertools::Itertools;
 use proconio::{
     fastout, input,
@@ -5,6 +7,28 @@ use proconio::{
 };
 #[fastout]
 pub fn main() {
+    c()
+}
+
+fn c() {
+    input! {
+        mut n: isize,
+        a: [usize; n],
+    }
+
+    let set: HashSet<usize> = a.into_iter().collect();
+    let mut read = 0;
+    while n >= 0 {
+        read += 1;
+        if set.contains(&read) {
+            n -= 1;
+        } else {
+            n -= 2;
+        }
+    }
+    println!("{}", read - 1);
+}
+fn d() {
     input! {
     n:usize,
     mut s:usize,
