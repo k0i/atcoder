@@ -5,6 +5,24 @@ use proconio::{
 };
 #[fastout]
 pub fn main() {
+    input! {
+        mut n : usize
+    }
+    if n % 2 == 1 {
+        println!("0");
+        return;
+    }
+
+    let mut ans = 0;
+    n /= 2;
+    while n > 0 {
+        ans += n / 5;
+        n /= 5;
+    }
+
+    println!("{}", ans);
+}
+fn c() {
     input! {a:usize,b:usize}
     println!("{:?}", Euclidean::lcm(a, b));
 }
