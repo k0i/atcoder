@@ -5,7 +5,28 @@ use proconio::{
 };
 #[fastout]
 pub fn main() {
-    c()
+    d()
+}
+fn d() {
+    input! {
+        s: Chars,
+        q: usize,
+        tk: [(usize, usize);q],
+    }
+    for &(t, k) in tk.iter() {
+        let mut k = k - 1;
+        let mut si = 0;
+        if t <= 60 {
+            let b = 1 << t;
+            si = k / b;
+            k %= b;
+        }
+        let r = k.count_ones() as usize;
+        let l = t - r;
+        let x = l + r * 2 + (s[si] as usize - 'A' as usize);
+        let ans = ('A' as usize + (x % 3)) as u8 as char;
+        println!("{}", ans);
+    }
 }
 
 fn c() {
