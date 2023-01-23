@@ -3,8 +3,39 @@ use proconio::{
     fastout, input,
     marker::{Bytes, Chars, Isize1, Usize1},
 };
+
+const MOD: usize = 998244353;
+
+fn power(base: usize, times: usize) -> usize {
+    if times == 0 {
+        return 1usize;
+    }
+    if times == 1 {
+        return base;
+    }
+    let temp = power(base, times / 2);
+    temp * temp % MOD * power(base, times % 2) % MOD
+}
+
 #[fastout]
 pub fn main() {
+    input! {
+    n:usize,
+    p:usize
+        }
+
+    let mod100 = power(100, MOD - 2);
+    let p = p * mod100 % MOD;
+    let revp = (MOD + 1 - p) % MOD;
+    let mut dp = vec![0; n + 1];
+    dp[1] = 1;
+    for i in 2..=n {
+        dp[i] = (dp[i - 1] * revp + dp[i - 2] * p + 1) % MOD;
+    }
+    println!("{}", dp[n]);
+}
+
+fn a() {
     input! {
         h: usize,
         _: usize,
