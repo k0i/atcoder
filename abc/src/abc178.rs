@@ -6,6 +6,20 @@ use proconio::{
 #[fastout]
 pub fn main() {
     input! {
+        s: usize,
+    }
+
+    let mut dp = vec![0; s + 1];
+    let m = 1000000007;
+    dp[0] = 1;
+
+    for i in 3..=s {
+        dp[i] = (dp[i - 1] + dp[i - 3]) % m;
+    }
+    println!("{}", dp[s]);
+}
+fn c() {
+    input! {
     n:i64
     }
     let m = 10i64.pow(9) + 7;
