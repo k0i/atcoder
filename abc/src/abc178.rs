@@ -6,6 +6,26 @@ use proconio::{
 #[fastout]
 pub fn main() {
     input! {
+        n:usize,
+        xy:[(i64,i64);n]
+    };
+
+    let mut zs = vec![];
+    let mut ws = vec![];
+    for (x, y) in xy {
+        zs.push(x + y);
+        ws.push(x - y);
+    }
+
+    let z_min = zs.iter().min().unwrap();
+    let z_max = zs.iter().max().unwrap();
+    let w_min = ws.iter().min().unwrap();
+    let w_max = ws.iter().max().unwrap();
+
+    println!("{}", std::cmp::max(z_max - z_min, w_max - w_min));
+}
+fn d() {
+    input! {
         s: usize,
     }
 
