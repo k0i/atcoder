@@ -186,6 +186,7 @@ mod agc043;
 mod arc003;
 mod arc014;
 mod arc020;
+mod arc041;
 mod arc053;
 mod arc059;
 mod arc063;
@@ -215,5 +216,5 @@ mod panasonic2020;
 mod sumitob2019;
 mod zone2021;
 fn main() {
-    abc039::main();
+    arc041::main();
 }
