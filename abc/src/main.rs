@@ -217,5 +217,5 @@ mod panasonic2020;
 mod sumitob2019;
 mod zone2021;
 fn main() {
-    agc023::main();
+    abc052::main();
 }

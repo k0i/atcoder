@@ -7,6 +7,20 @@ use std::collections::{BTreeSet, HashMap, HashSet};
 #[fastout]
 pub fn main() {
     input! {
+    n:usize,
+    a:usize,
+    b:usize,
+    x:[usize;n]
+        }
+    let mut ans = 0;
+
+    for i in 0..n - 1 {
+        ans += std::cmp::min((x[i + 1] - x[i]) * a, b);
+    }
+    println!("{}", ans);
+}
+fn c() {
+    input! {
         n:u64
     }
     let m = 1000000007;
