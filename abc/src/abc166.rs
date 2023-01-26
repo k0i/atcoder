@@ -1,3 +1,5 @@
+use std::collections::HashMap;
+
 use itertools::Itertools;
 use proconio::{
     fastout, input,
@@ -5,6 +7,28 @@ use proconio::{
 };
 #[fastout]
 pub fn main() {
+    input! {
+        n: usize,
+        a: [isize; n],
+    }
+
+    let mut m = HashMap::new();
+
+    for i in 0..n {
+        *m.entry(-a[i] + i as isize).or_insert(0isize) += 1;
+    }
+
+    let mut result = 0;
+
+    for i in 0..n {
+        if let Some(&value) = m.get(&(a[i] + i as isize)) {
+            result += value;
+        }
+    }
+
+    println!("{}", result);
+}
+fn d() {
     input! {
     x:i64
         }
