@@ -5,22 +5,42 @@ use proconio::{
     fastout, input,
     marker::{Bytes, Chars, Isize1, Usize1},
 };
+fn modulo(x: i64, m: i64) -> i64 {
+    ((x % m) + m) % m
+}
+const MOD: usize = 998244353;
+
 #[fastout]
 pub fn main() {
     input! {
-    n:u64,
-    a:u64,
-    b:u64
+      n: usize,
+      m: usize,
+      k: usize,
+    }
+    let mut dp = vec![vec![0; m + 1]; n + 1];
+    for j in 1..=m {
+        dp[1][j] = 1;
+    }
+    for i in 1..n {
+        let mut sum = 0;
+        for j in (1..=m).rev() {
+            sum += dp[i][j];
         }
-    let am = n / a;
-    let bm = n / b;
-    let lcm = a * b / gcd(a, b);
-    let lcm_m = n / lcm;
-    let sum = n * (n + 1) / 2;
-    let a_sum = (a + (am * a)) * am / 2;
-    let b_sum = (b + (bm * b)) * bm / 2;
-    let lcm_sum = (lcm + (lcm_m * lcm)) * lcm_m / 2;
-    println!("{}", sum - a_sum - b_sum + lcm_sum);
+        for j in (1..=k).rev() {
+            sum -= dp[i][j];
+        }
+        for j in 1..=m {
+            dp[i + 1][j] = sum;
+            dp[i + 1][j] %= MOD;
+            if j + k <= m {
+                sum -= dp[i][j + k];
+            }
+            if j + 1 >= k && j + 1 - k <= m {
+                sum += dp[i][j + 1 - k];
+            }
+        }
+    }
+    println!("{}", dp[n].iter().sum::<usize>() % MOD);
 }
 
 fn gcd(a: u64, b: u64) -> u64 {
