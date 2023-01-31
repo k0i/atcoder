@@ -9,6 +9,40 @@ use std::collections::{HashMap, HashSet, VecDeque};
 pub fn main() {
     input! {
     n:usize,
+    k:i64,
+    a:[i64;n]
+        }
+    let f = |x: i64| {
+        let mut ret = 0;
+        for i in 0..n {
+            ret += (a[i] - x).max(0);
+        }
+        ret <= k
+    };
+    let mut l = -1;
+    let mut r = 10000000000;
+    while l + 1 != r {
+        let mid = (l + r) / 2;
+        if f(mid) {
+            r = mid;
+        } else {
+            l = mid;
+        }
+    }
+    let mut ans = 0;
+    let mut count = 0;
+    for i in 0..n {
+        let c = (a[i] - r).max(0);
+        count += c;
+        ans += a[i] * c;
+        ans -= c * (c - 1) / 2;
+    }
+    ans += r * (k - count);
+    println!("{}", ans);
+}
+fn d() {
+    input! {
+    n:usize,
     m:usize,
         }
     let mut graph = vec![vec![]; n];
