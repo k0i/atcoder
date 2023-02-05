@@ -5,6 +5,27 @@ use proconio::{
 };
 pub fn main() {
     input! {
+    n:usize
+    }
+    let f = |a: usize, b: usize| -> usize { a * a * a + a * a * b + a * b * b + b * b * b };
+    let mut ans = std::usize::MAX;
+    for a in 0..=1000001 {
+        let mut left = -1;
+        let mut right = 1000001;
+        while right - left > 1 {
+            let mid = (left + right) / 2;
+            if f(a, mid as usize) < n {
+                left = mid;
+            } else {
+                right = mid;
+            }
+        }
+        ans = ans.min(f(a, right as usize));
+    }
+    println!("{}", ans);
+}
+fn c() {
+    input! {
      n:usize,
     mut k:usize,
      x:usize,
