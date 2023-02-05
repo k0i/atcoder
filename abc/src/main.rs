@@ -173,6 +173,7 @@ mod abc271;
 mod abc272;
 mod abc277;
 mod abc280;
+mod abc288;
 mod agc002;
 mod agc008;
 mod agc011;
@@ -220,5 +221,5 @@ mod panasonic2020;
 mod sumitob2019;
 mod zone2021;
 fn main() {
-    abc115::main();
+    abc288::main();
 }
