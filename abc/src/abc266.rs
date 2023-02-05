@@ -27,6 +27,22 @@ macro_rules! chmin {
 #[fastout]
 pub fn main() {
     input! {
+        n:usize,
+
+    };
+    let mut ans = vec![std::f64::MIN; n];
+    ans[n - 1] = 3.5;
+    for i in (0..n - 1).rev() {
+        let mut cand = 0.0;
+        for j in 1..=6 {
+            cand += ans[i + 1].max(j as f64);
+        }
+        ans[i] = cand / 6.0;
+    }
+    println!("{}", ans[0]);
+}
+fn d() {
+    input! {
     n:usize,
     tab:[(usize,usize,usize);n]
         }
