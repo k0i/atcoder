@@ -6,7 +6,25 @@ use proconio::{
     fastout, input,
     marker::{Bytes, Chars, Isize1, Usize1},
 };
-pub fn main() {}
+pub fn main() {
+    d()
+}
+
+fn d() {
+    input! {
+        w: usize,
+    }
+    println!("298");
+    for i in 1..100 {
+        print!("{} ", i);
+    }
+    for i in 1..100 {
+        print!("{} ", i * 100);
+    }
+    for i in 1..=100 {
+        print!("{} ", i * 10000);
+    }
+}
 pub fn c() {
     input! {
     n:usize,
