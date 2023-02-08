@@ -6,6 +6,31 @@ use proconio::{
 #[fastout]
 pub fn main() {
     input! {
+    mut s:Chars,
+    }
+    let mut s: Vec<usize> = s
+        .into_iter()
+        .map(|c| c.to_digit(10).unwrap() as usize)
+        .collect();
+    let mut ans = 0;
+    for i in 0..1 << s.len() {
+        let mut temp = String::new();
+        let mut op = vec![];
+        for j in 0..s.len() {
+            if i >> j & 1 == 1 {
+                op.push(temp.parse::<usize>().unwrap_or(0));
+                temp = String::new();
+                continue;
+            }
+            temp.push_str(&s[j].to_string());
+        }
+        op.push(temp.parse::<usize>().unwrap_or(0));
+        ans += op.into_iter().sum::<usize>();
+    }
+    println!("{}", ans);
+}
+fn b() {
+    input! {
         sa: String,
         sb: String,
         sc: String,
