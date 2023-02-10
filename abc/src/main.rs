@@ -205,6 +205,7 @@ mod arc115;
 mod arc117;
 mod arc128;
 mod arc129;
+mod arc140;
 mod arc142;
 mod arc145;
 mod arc148;
@@ -222,5 +223,5 @@ mod panasonic2020;
 mod sumitob2019;
 mod zone2021;
 fn main() {
-    abc102::main();
+    arc140::main();
 }
