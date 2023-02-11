@@ -1,4 +1,4 @@
-use std::collections::{BTreeMap, HashMap};
+use std::collections::{BTreeMap, HashMap, VecDeque};
 
 use itertools::Itertools;
 use proconio::{
@@ -7,6 +7,56 @@ use proconio::{
 };
 #[fastout]
 pub fn main() {
+    input! {
+      n: usize, m: usize, k: usize,
+      uva: [(Usize1, Usize1, usize); m],
+      s: [Usize1; k],
+    }
+
+    let mut g = vec![vec![]; 2 * n];
+
+    for (u, v, a) in uva {
+        if a == 1 {
+            g[u].push((v, 1));
+            g[v].push((u, 1));
+        } else {
+            g[u + n].push((v + n, 1));
+            g[v + n].push((u + n, 1));
+        }
+    }
+
+    for x in s {
+        g[x].push((x + n, 0));
+        g[x + n].push((x, 0));
+    }
+
+    let mut que = VecDeque::new();
+    que.push_back(0);
+
+    let mut dist = vec![100100100; 2 * n];
+    dist[0] = 0;
+
+    while let Some(u) = que.pop_front() {
+        for (v, c) in &g[u] {
+            if dist[*v] <= dist[u] + c {
+                continue;
+            }
+            dist[*v] = dist[u] + c;
+            if *c == 0 {
+                que.push_front(*v);
+            } else {
+                que.push_back(*v);
+            }
+        }
+    }
+
+    let mut ans = std::cmp::min(dist[n - 1], dist[2 * n - 1]);
+    if ans == 100100100 {
+        ans = -1;
+    }
+    println!("{}", ans);
+}
+fn d() {
     input! {
         n: usize,
         m: usize,
