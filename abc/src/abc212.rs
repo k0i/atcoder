@@ -8,6 +8,40 @@ use proconio::{
 #[fastout]
 pub fn main() {
     input! {
+        n: usize,
+        m: usize,
+        k: usize,
+        uv: [(Usize1,Usize1); m],
+    }
+
+    const MOD: usize = 998244353;
+
+    let mut dp = vec![vec![0; n]; k + 1];
+    dp[0][0] = 1;
+
+    for i in 1..=k {
+        let sum_yesterday = dp[i - 1].iter().sum();
+        for j in 0..n {
+            dp[i][j] = sum_yesterday;
+            dp[i][j] -= dp[i - 1][j];
+        }
+        for j in 0..m {
+            let mut s = uv[j].0;
+            let mut t = uv[j].1;
+            dp[i][s] -= dp[i - 1][t];
+            dp[i][t] -= dp[i - 1][s];
+        }
+        for j in 0..n {
+            dp[i][j] %= MOD;
+            dp[i][j] += MOD;
+            dp[i][j] %= MOD;
+        }
+    }
+    println!("{}", dp[k][0]);
+}
+
+fn d() {
+    input! {
     q:usize,
     }
     let mut h = std::collections::BinaryHeap::new();
