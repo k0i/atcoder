@@ -8,6 +8,40 @@ use std::collections::{BTreeSet, HashMap, HashSet};
 pub fn main() {
     input! {
         n: usize,
+        s: Bytes,
+    }
+
+    let mut dp = vec![vec![vec![0; 11]; 1 << 10]; n + 1];
+    let MOD = 998244353;
+    dp[0][0][10] = 1;
+    for i in 0..n {
+        let c = (s[i] - b'A') as usize;
+        for j in 0..1 << 10 {
+            for k in 0..11 {
+                dp[i + 1][j][k] += dp[i][j][k];
+                dp[i + 1][j][k] %= MOD;
+                if k == c && j >> k & 1 == 1 {
+                    dp[i + 1][j][k] += dp[i][j][k];
+                    dp[i + 1][j][k] %= MOD;
+                } else if k != c && j >> c & 1 == 0 {
+                    dp[i + 1][j | 1 << c][c] += dp[i][j][k];
+                    dp[i + 1][j | 1 << c][c] %= MOD;
+                }
+            }
+        }
+    }
+    let mut res = 0;
+    for i in 0..1 << 10 {
+        for j in 0..10 {
+            res += dp[n][i][j];
+            res %= MOD;
+        }
+    }
+    println!("{}", res);
+}
+fn d() {
+    input! {
+        n: usize,
         m: usize,
         a: [usize; n],
     };
