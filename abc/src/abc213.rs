@@ -3,8 +3,49 @@ use proconio::{
     fastout, input,
     marker::{Bytes, Chars, Isize1, Usize1},
 };
+use std::{cmp::Ordering, collections::VecDeque};
+
 #[fastout]
 pub fn main() {
+    input! {
+        h: usize, w: usize,
+        s: [Chars; h],
+    };
+
+    let mut que = VecDeque::new();
+    let mut d = vec![vec![std::i64::MAX; w]; h];
+    d[0][0] = 0;
+    que.push_back((0isize, 0isize));
+
+    while let Some((x, y)) = que.pop_back() {
+        let mut dis = d[x as usize][y as usize];
+        for &(dx, dy) in [(1, 0), (-1, 0), (0, 1), (0, -1)].iter() {
+            let nx = (dx + x) as usize;
+            let ny = (dy + y) as usize;
+            if nx < h && ny < w && s[nx][ny] == '.' && d[nx][ny] > dis {
+                que.push_back((nx as isize, ny as isize));
+                d[nx][ny] = dis;
+            }
+        }
+        dis += 1;
+        for dx in -2isize..=2 {
+            for dy in -2isize..=2 {
+                if dx.abs() + dy.abs() == 4 {
+                    continue;
+                }
+                let nx = (dx + x) as usize;
+                let ny = (dy + y) as usize;
+                if nx < h && ny < w && d[nx][ny] > dis {
+                    que.push_front((nx as isize, ny as isize));
+                    d[nx][ny] = dis;
+                }
+            }
+        }
+    }
+    println!("{}", d[h - 1][w - 1]);
+}
+
+fn d() {
     input! {
         n: usize,
     }
@@ -70,8 +111,6 @@ fn c() {
         println!("{} {}", row_compressed[i] + 1, col_compressed[i] + 1);
     }
 }
-
-use std::{cmp::Ordering, collections::VecDeque};
 
 // Returns an iterator to specified bound that pointing to the first element in the range.
 pub trait Bound<T> {
