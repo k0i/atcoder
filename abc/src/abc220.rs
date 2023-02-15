@@ -3,8 +3,37 @@ use proconio::{
     fastout, input,
     marker::{Bytes, Chars, Isize1, Usize1},
 };
+const MOD: usize = 998_244_353;
+
 #[fastout]
 pub fn main() {
+    input! {
+        n: usize,
+        d: usize,
+    }
+    let mut pw2 = vec![1; n * 2 + 2];
+    for i in 0..n * 2 + 1 {
+        pw2[i + 1] = pw2[i] * 2 % MOD;
+    }
+    let mut res = 0;
+    for i in 0..d + 1 {
+        let j = d - i;
+        if i.max(j) >= n {
+            continue;
+        }
+        let mut c = pw2[n - i.max(j)] - 1;
+        c *= pw2[i.max(1) - 1];
+        c %= MOD;
+        c *= pw2[j.max(1) - 1];
+        c %= MOD;
+        res += c;
+        res %= MOD;
+    }
+    res *= 2;
+    res %= MOD;
+    println!("{}", res);
+}
+fn d() {
     input! {
     n:usize,
     a:[usize;n]
