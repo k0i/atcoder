@@ -228,7 +228,8 @@ mod m_solutions;
 mod pa_ken2019;
 mod panasonic2020;
 mod sumitob2019;
+mod tenka1_2018;
 mod zone2021;
 fn main() {
-    abc035::main();
+    abc171::main();
 }

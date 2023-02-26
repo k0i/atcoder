@@ -1,13 +1,23 @@
-use std::collections::HashMap;
-
-#[allow(unused_imports)]
+#![allow(unused_imports)]
+use itertools::Itertools;
 use proconio::{
-    fastout, input,
-    marker::{Bytes, Chars, Isize1, Usize1},
+    fastout, input as ip,
+    marker::{Bytes, Chars, Isize1, Usize1 as U1},
 };
+use std::collections::{HashMap, HashSet};
 #[fastout]
 pub fn main() {
-    input! {
+    ip! {
+    n:usize,
+    a:[usize;n],
+        }
+    let xor = a.iter().fold(0, |acc, x| acc ^ x);
+    for i in 0..n {
+        print!("{} ", xor ^ a[i]);
+    }
+}
+fn d() {
+    ip! {
     n:usize,
     a:[u64;n],
     q:usize
@@ -20,7 +30,7 @@ pub fn main() {
         sum += a[i];
     }
     for _ in 0..q {
-        input! {
+        ip! {
         b:u64,
         c:u64
         }
