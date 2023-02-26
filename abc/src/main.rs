@@ -215,6 +215,7 @@ mod arc142;
 mod arc145;
 mod arc148;
 mod arc155;
+mod caddi2018;
 mod cf2015qualb;
 mod cf2016quala;
 mod cf2016qualc;
