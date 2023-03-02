@@ -9,6 +9,7 @@ mod abc002;
 mod abc003;
 mod abc004;
 mod abc005;
+mod abc006;
 mod abc008;
 mod abc010;
 mod abc014;
@@ -231,5 +232,5 @@ mod sumitob2019;
 mod tenka1_2018;
 mod zone2021;
 fn main() {
-    abc245::main();
+    abc006::main();
 }
