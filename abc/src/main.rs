@@ -66,6 +66,7 @@ mod abc118;
 mod abc121;
 mod abc122;
 mod abc123;
+mod abc124;
 mod abc126;
 mod abc127;
 mod abc128;
@@ -234,5 +235,5 @@ mod sumitob2019;
 mod tenka1_2018;
 mod zone2021;
 fn main() {
-    abc111::main();
+    abc124::main();
 }
