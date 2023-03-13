@@ -8,6 +8,51 @@ use std::collections::{HashMap, HashSet};
 #[fastout]
 pub fn main() {
     input! {
+    n:usize,
+    m:usize,
+    abcd:[(Usize1,char,Usize1,char);m],
+        }
+    let mut g = vec![vec![]; n];
+    for i in 0..m {
+        let (a, _, b, _) = abcd[i];
+        g[a].push(b);
+        g[b].push(a);
+    }
+    let mut uncycled = 0;
+    let mut cycle = 0;
+    let mut visited = vec![false; n];
+    for i in 0..n {
+        if visited[i] {
+            continue;
+        }
+        let mut queue = vec![];
+        queue.push(i);
+        visited[i] = true;
+        let mut edges = 0;
+        let mut nodes = 0;
+        while !queue.is_empty() {
+            let v = queue.pop().unwrap();
+            nodes += 1;
+            for &w in &g[v] {
+                edges += 1;
+                if visited[w] {
+                    continue;
+                }
+                visited[w] = true;
+                queue.push(w);
+            }
+        }
+        edges /= 2;
+        if edges == nodes - 1 {
+            uncycled += 1;
+        } else {
+            cycle += 1;
+        }
+    }
+    println!("{} {}", cycle, uncycled);
+}
+fn c() {
+    input! {
         a: usize,
         x: usize,
         m: usize,
