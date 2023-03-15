@@ -1,3 +1,5 @@
+use std::collections::VecDeque;
+
 use itertools::Itertools;
 use proconio::{
     fastout, input,
@@ -5,6 +7,44 @@ use proconio::{
 };
 #[fastout]
 pub fn main() {
+    input! {
+        n: usize,
+        q: usize,
+        lr: [(Usize1,usize);q],
+    }
+
+    let mut ad = vec![vec![]; n + 1];
+    for &(l, r) in lr.iter() {
+        ad[l].push(r);
+        ad[r].push(l);
+    }
+
+    let mut visited = vec![false; n + 1];
+    let start = 0;
+    let mut todo = VecDeque::new();
+    todo.push_back(start);
+    loop {
+        if let Some(i) = todo.pop_front() {
+            if visited[i] {
+                continue;
+            }
+            visited[i] = true;
+            for &j in ad[i].iter() {
+                todo.push_back(j);
+            }
+        } else {
+            break;
+        }
+    }
+
+    if visited[n] {
+        println!("Yes");
+    } else {
+        println!("No");
+    }
+}
+
+fn d() {
     input! {
         t: usize,
         ts: [(usize, usize); t],
