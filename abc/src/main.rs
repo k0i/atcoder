@@ -78,6 +78,7 @@ mod abc130;
 mod abc134;
 mod abc137;
 mod abc141;
+mod abc142;
 mod abc146;
 mod abc147;
 mod abc148;
@@ -240,5 +241,5 @@ mod sumitob2019;
 mod tenka1_2018;
 mod zone2021;
 fn main() {
-    abc238::main();
+    abc142::main();
 }
