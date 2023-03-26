@@ -7,6 +7,47 @@ use proconio::{
 use std::collections::{HashMap, HashSet};
 #[fastout]
 pub fn main() {
+    c()
+}
+
+fn c() {
+    input! {
+    h:usize,
+    w:usize,
+    a:[[usize;w];h],
+    }
+    let mut ans = 0;
+    for i in 0..1 << (h + w - 2) {
+        let mut dup = HashSet::new();
+        dup.insert(a[0][0]);
+        let mut x = 0;
+        let mut y = 0;
+        for j in 0..h + w - 2 {
+            if (i >> j) % 2 == 0 {
+                x += 1;
+            } else {
+                y += 1;
+            }
+            if x >= h || y >= w {
+                break;
+            }
+            if dup.contains(&a[x][y]) {
+                break;
+            }
+            dup.insert(a[x][y]);
+        }
+        if dup.len() == h + w - 1 {
+            ans += 1;
+        }
+    }
+    println!("{}", ans);
+}
+
+fn factorial(a: usize) -> usize {
+    (1..=a).product()
+}
+
+fn d() {
     input! {
     n:usize,
     m:usize,
@@ -50,29 +91,6 @@ pub fn main() {
         }
     }
     println!("{} {}", cycle, uncycled);
-}
-fn c() {
-    input! {
-        a: usize,
-        x: usize,
-        m: usize,
-    }
-
-    let ans = f(a, x, m);
-
-    println!("{}", ans);
-}
-
-fn f(a: usize, x: usize, m: usize) -> usize {
-    if x == 0 {
-        return 0;
-    }
-
-    if x % 2 == 0 {
-        return (f(a, x / 2, m) * (1 + powmod(a, x / 2, m))) % m;
-    } else {
-        return (1 + a * f(a, x - 1, m)) % m;
-    }
 }
 
 fn powmod(a: usize, b: usize, m: usize) -> usize {
