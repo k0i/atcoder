@@ -1,3 +1,5 @@
+use std::collections::{BTreeMap, BTreeSet};
+
 use itertools::Itertools;
 use proconio::{
     fastout, input,
@@ -5,103 +7,95 @@ use proconio::{
 };
 #[fastout]
 pub fn main() {
-    input! {
-        n: usize,
-        k: usize,
-        a: [usize; n],
-    }
-
-    let mut sum = vec![0];
-    let mut seen_at = vec![n; n];
-    seen_at[0] = 0;
-    let mut loop_first = n;
-
-    for i in 0..n {
-        let next_sum = sum[i] + a[sum[i] % n];
-        sum.push(next_sum);
-        if seen_at[next_sum % n] < n {
-            loop_first = seen_at[next_sum % n];
-            break;
-        }
-        seen_at[next_sum % n] = i + 1;
-    }
-
-    if k < sum.len() {
-        println!("{}", sum[k]);
-        return;
-    }
-    let loop_interval = sum.len() - loop_first - 1;
-    let inc_per_loop = sum.last().unwrap() - sum[loop_first];
-    let q = (k - loop_first) / loop_interval;
-    let r = (k - loop_first) % loop_interval;
-    let ans = q * inc_per_loop + sum[loop_first + r];
-    println!("{}", ans);
+    d()
 }
 
-fn c() {
+fn d() {
     input! {
-    n:usize
-        }
-    let mut a = vec![];
-    for i in 0..n {
+    q:usize
+    }
+    let mut t = MultiSet::new();
+
+    for _ in 0..q {
         input! {
-        line:Chars
+            x:usize
         }
-        a.push(line);
+        match x {
+            1 => {
+                input! {k:usize}
+                t.insert(k)
+            }
+            2 => {
+                input! {x:usize,k:Usize1}
+                match t.lower_kth(x, k) {
+                    Some((key, _)) => println!("{}", key),
+                    None => println!("-1"),
+                }
+            }
+            _ => {
+                input! {x:usize,k:Usize1}
+                match t.higer_kth(x, k) {
+                    Some((key, _)) => println!("{}", key),
+                    None => println!("-1"),
+                }
+            }
+        }
+    }
+}
+
+const INF: usize = 1 << 60;
+#[derive(Debug)]
+pub struct MultiSet<T>
+where
+    T: Ord,
+{
+    set: BTreeSet<(T, usize)>,
+    index: usize,
+}
+
+impl<T> MultiSet<T>
+where
+    T: Ord + std::fmt::Debug,
+{
+    pub fn new() -> Self {
+        Self {
+            set: BTreeSet::new(),
+            index: 0,
+        }
     }
 
-    let mut res = "No";
-    'outer: for i in 0..n {
-        for j in 0..n {
-            if i + 5 < n {
-                let mut cnt = 0;
-                for k in 0..6 {
-                    if a[i + k][j] == '#' {
-                        cnt += 1;
-                    }
-                }
-                if cnt >= 4 {
-                    res = "Yes";
-                    break 'outer;
-                }
-            }
-            if j + 5 < n {
-                let mut cnt = 0;
-                for k in 0..6 {
-                    if a[i][j + k] == '#' {
-                        cnt += 1
-                    };
-                }
-                if cnt >= 4 {
-                    res = "Yes";
-                    break 'outer;
-                }
-            }
-            if (i + 5 < n) && (j + 5 < n) {
-                let mut cnt = 0;
-                for k in 0..6 {
-                    if a[i + k][j + k] == '#' {
-                        cnt += 1;
-                    }
-                }
-                if cnt >= 4 {
-                    res = "Yes";
-                    break 'outer;
-                }
-            }
-            if i >= 5 && j + 5 < n {
-                let mut cnt = 0;
-                for k in 0..6 {
-                    if a[i - k][j + k] == '#' {
-                        cnt += 1;
-                    }
-                }
-                if cnt >= 4 {
-                    res = "Yes";
-                    break 'outer;
-                }
-            }
+    pub fn lower_bound(&self, x: T) -> Option<usize> {
+        let cnt = self.set.range(..(x, INF)).count();
+        if cnt == self.set.len() {
+            None
+        } else {
+            Some(cnt)
         }
     }
-    println!("{}", res);
+
+    pub fn lower_kth(&self, x: T, k: usize) -> Option<&(T, usize)> {
+        self.set.range(..=(x, INF)).rev().nth(k)
+    }
+
+    pub fn higer_kth(&self, x: T, k: usize) -> Option<&(T, usize)> {
+        self.set.range((x, 0)..).nth(k)
+    }
+
+    pub fn upper_bound(&self, x: T) -> Option<usize> {
+        let cnt = self.set.range(..=(x, INF)).count();
+        if cnt == self.set.len() {
+            None
+        } else {
+            Some(cnt)
+        }
+    }
+
+    pub fn insert(&mut self, x: T) {
+        self.set.insert((x, self.index));
+        self.index += 1;
+    }
+
+    pub fn is_empty(&self) -> bool {
+        self.set.is_empty()
+    }
 }
