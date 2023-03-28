@@ -7,7 +7,34 @@ use proconio::{
 };
 #[fastout]
 pub fn main() {
-    e()
+    d()
+}
+
+fn d() {
+    input! {
+    n:usize
+    }
+    let mut v = vec![];
+    let mut ans = 0;
+    for i in 2..=n {
+        if i * i <= n {
+            v.push(i * i);
+        }
+    }
+    for i in 1..=n {
+        let mut x = i;
+        for &s in v.iter().rev() {
+            if x % s == 0 {
+                x /= s;
+            }
+        }
+        let mut y = 1;
+        while x * y * y <= n {
+            ans += 1;
+            y += 1;
+        }
+    }
+    println!("{}", ans);
 }
 fn e() {
     input! {
