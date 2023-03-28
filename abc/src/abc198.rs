@@ -1,3 +1,5 @@
+use std::collections::{BTreeSet, HashSet};
+
 use itertools::Itertools;
 use proconio::{
     fastout, input,
@@ -6,8 +8,63 @@ use proconio::{
 use superslice::Ext;
 #[fastout]
 pub fn main() {
-    d()
+    e()
 }
+
+fn e() {
+    input! {
+        n:usize,
+        c:[usize;n],
+        ab:[(Usize1,Usize1);n-1]
+    }
+    let mut g = vec![vec![]; n];
+    for i in 0..n - 1 {
+        g[ab[i].0].push(ab[i].1);
+        g[ab[i].1].push(ab[i].0);
+    }
+    let mut ans = BTreeSet::new();
+    ans.insert(1);
+    let mut colors = vec![0; 100001];
+    colors[c[0]] = 1;
+    let mut visited = vec![false; n];
+    visited[0] = true;
+    dfs(0, &g, &mut colors, &c, &mut visited, &mut ans);
+    for &a in &ans {
+        println!("{}", a);
+    }
+}
+
+#[allow(dead_code)]
+fn dfs(
+    start: usize,
+    graph: &[Vec<usize>],
+    colors: &mut Vec<usize>,
+    cs: &[usize],
+    visited: &mut Vec<bool>,
+    ans: &mut BTreeSet<usize>,
+) {
+    for &nv in &graph[start] {
+        if visited[nv] {
+            continue;
+        }
+        visited[nv] = true;
+        if colors[cs[nv]] == 0 {
+            ans.insert(nv + 1);
+            colors[cs[nv]] = 1;
+        } else {
+            colors[cs[nv]] += 1;
+        }
+        dfs(nv, graph, colors, cs, visited, ans);
+    }
+    colors[cs[start]] -= 1;
+}
+fn is_ancestor(parent: usize, child: usize, in_time: &[usize], out_time: &[usize]) -> bool {
+    in_time[parent] <= in_time[child] && out_time[child] <= out_time[parent]
+}
+fn is_descendant(parent: usize, child: usize, in_time: &[usize], out_time: &[usize]) -> bool {
+    is_ancestor(child, parent, in_time, out_time)
+}
+
 fn d() {
     input! {
         s: [Bytes; 3],
