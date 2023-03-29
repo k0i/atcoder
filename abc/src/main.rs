@@ -189,6 +189,7 @@ mod abc280;
 mod abc288;
 mod abc293;
 mod agc002;
+mod agc007;
 mod agc008;
 mod agc011;
 mod agc013;
@@ -238,10 +239,9 @@ mod keyence2020;
 mod m_solutions;
 mod pa_ken2019;
 mod panasonic2020;
-mod practice2;
 mod sumitob2019;
 mod tenka1_2018;
 mod zone2021;
 fn main() {
-    abc198::main();
+    agc007::main();
 }
