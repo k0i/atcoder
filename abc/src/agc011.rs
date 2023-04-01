@@ -6,6 +6,38 @@ use proconio::{
 use std::collections::{HashMap, HashSet};
 #[fastout]
 pub fn main() {
+    a()
+}
+
+fn a() {
+    input! {
+    n:usize,
+    c:usize,
+    k:usize,
+     mut t:[usize;n]
+    }
+    let mut ans = 0;
+    t.sort();
+    let mut start = t[0];
+    let mut count = 0;
+    let mut i = 0;
+    while i < n {
+        if t[i] - start <= k && count < c {
+            count += 1;
+            i += 1;
+        } else {
+            ans += 1;
+            start = t[i];
+            count = 0;
+        }
+    }
+    if count > 0 {
+        ans += 1;
+    }
+    println!("{}", ans);
+}
+
+fn b() {
     input! {
         n: usize,
         mut a: [i64; n],

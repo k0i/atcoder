@@ -246,5 +246,5 @@ mod sumitob2019;
 mod tenka1_2018;
 mod zone2021;
 fn main() {
-    nikkei2019_2_qual::main();
+    agc011::main();
 }
