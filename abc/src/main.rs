@@ -234,6 +234,7 @@ mod caddi2018;
 mod cf2015qualb;
 mod cf2016quala;
 mod cf2016qualc;
+mod cf2017quala;
 mod cf2017qualc;
 mod chokudai_S001;
 mod diverta2019_2;
@@ -248,5 +249,5 @@ mod sumitob2019;
 mod tenka1_2018;
 mod zone2021;
 fn main() {
-    abc094::main();
+    cf2017quala::main();
 }
