@@ -219,6 +219,7 @@ mod arc087;
 mod arc098;
 mod arc108;
 mod arc110;
+mod arc112;
 mod arc114;
 mod arc115;
 mod arc117;
@@ -249,5 +250,5 @@ mod sumitob2019;
 mod tenka1_2018;
 mod zone2021;
 fn main() {
-    cf2017quala::main();
+    arc112::main();
 }
