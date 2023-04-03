@@ -1,36 +1,36 @@
-use std::rc::Rc;
-
-use proconio::input;
-
+#![allow(unused_imports)]
+use itertools::Itertools;
+use proconio::{
+    fastout, input,
+    marker::{Bytes, Chars, Isize1, Usize1},
+};
+use std::collections::{HashMap, HashSet};
+#[fastout]
 pub fn main() {
     input! {
-    n :usize,
-    l:u32,
+    n:usize,
+    l:usize,
     k:usize,
-    a :[u32;n]
+    a:[usize;n],
         }
+
     let mut left = 0;
     let mut right = l;
-    let temp = a;
-
     while right - left > 1 {
         let mid = (left + right) / 2;
-        match cut(mid, &temp, l, k) {
-            true => left = mid,
-            false => right = mid,
+        let mut count = 0;
+        let mut prev = 0;
+        for i in 0..n {
+            if a[i] - prev >= mid && l - a[i] >= mid {
+                count += 1;
+                prev = a[i];
+            }
+        }
+        if count >= k {
+            left = mid;
+        } else {
+            right = mid;
         }
     }
     println!("{}", left);
-}
-
-fn cut(target: u32, a: &[u32], l: u32, count: usize) -> bool {
-    let mut prev = 0;
-    let mut cut = 0;
-    for i in a.iter() {
-        if i - prev >= target && l - i >= target {
-            cut += 1;
-            prev = *i;
-        }
-    }
-    cut >= count
 }

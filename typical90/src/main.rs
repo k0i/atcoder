@@ -43,5 +43,5 @@ mod twenty_two;
 mod two;
 
 fn main() {
-    eighty_five::main();
+    one::main();
 }
