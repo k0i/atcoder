@@ -4,9 +4,56 @@ use proconio::{
     fastout, input,
     marker::{Bytes, Chars, Isize1, Usize1},
 };
-use std::collections::{HashMap, HashSet};
+use std::{
+    cmp::Reverse,
+    collections::{HashMap, HashSet},
+};
 #[fastout]
 pub fn main() {
+    d()
+}
+
+fn d() {
+    input! {
+        n: usize,
+        m: usize,
+        mut a: [usize; m]
+    }
+
+    let mut ans;
+    if m == 0 {
+        ans = 1;
+    } else {
+        a.sort_by_key(|&x| Reverse(x));
+        let mut k = n - a[0];
+        let mut temp = a[0];
+        let mut white = Vec::new();
+        white.push(k);
+        for i in a.iter().skip(1) {
+            white.push(temp - i - 1);
+            if k == 0 {
+                k = temp - i - 1;
+            } else if temp - i - 1 != 0 {
+                k = k.min(temp - i - 1);
+            }
+            temp = *i;
+        }
+        if temp != 1 {
+            k = k.min(temp - 1);
+            white.push(temp - 1);
+        }
+        ans = 0;
+        for i in white {
+            if i == 0 {
+                continue;
+            }
+            ans += (i + k - 1) / k;
+        }
+    }
+
+    println!("{}", ans);
+}
+fn f() {
     input! {
         n :usize,
         q: usize,
