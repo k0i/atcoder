@@ -246,6 +246,7 @@ mod cf2017quala;
 mod cf2017qualc;
 mod chokudai_S001;
 mod diverta2019_2;
+mod diverta2019_c;
 mod jsc2019qual;
 mod keyence2019;
 mod keyence2020;
@@ -257,5 +258,5 @@ mod sumitob2019;
 mod tenka1_2018;
 mod zone2021;
 fn main() {
-    cf2016finalb::main();
+    diverta2019_c::main();
 }
