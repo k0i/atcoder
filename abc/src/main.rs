@@ -239,6 +239,7 @@ mod arc148;
 mod arc155;
 mod caddi2018;
 mod cf2015qualb;
+mod cf2016finalb;
 mod cf2016quala;
 mod cf2016qualc;
 mod cf2017quala;
@@ -256,5 +257,5 @@ mod sumitob2019;
 mod tenka1_2018;
 mod zone2021;
 fn main() {
-    abc172::main();
+    cf2016finalb::main();
 }
