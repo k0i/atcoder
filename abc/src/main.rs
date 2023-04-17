@@ -52,6 +52,7 @@ mod abc077;
 mod abc078;
 mod abc080;
 mod abc084;
+mod abc085;
 mod abc088;
 mod abc089;
 mod abc090;
@@ -259,5 +260,5 @@ mod sumitob2019;
 mod tenka1_2018;
 mod zone2021;
 fn main() {
-    diverta2019_c::main();
+    abc085::main();
 }
