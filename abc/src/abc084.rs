@@ -6,6 +6,29 @@ use proconio::{
 use std::collections::{HashMap, HashSet};
 #[fastout]
 pub fn main() {
+    c()
+}
+
+fn c() {
+    input! {
+     n:usize,
+     csf:[(i32,i32,i32);n-1]
+    }
+    for i in 0..n {
+        let mut p = i;
+        let mut t = 0;
+        while p != n - 1 {
+            t = std::cmp::max(t, csf[p].1);
+            let m = t % csf[p].2;
+            t += (csf[p].2 - m) % csf[p].2;
+            t += csf[p].0;
+            p += 1;
+        }
+        println!("{}", t);
+    }
+}
+
+fn d() {
     input! {
     q:usize,
     lr:[(usize,usize);q],
