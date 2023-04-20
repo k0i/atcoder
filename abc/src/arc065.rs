@@ -36,8 +36,6 @@ pub fn main() {
                 return;
             }
             j += 1;
-
-            println!("current: {}", current);
         }
         i = j + 1;
     }
