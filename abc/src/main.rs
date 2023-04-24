@@ -262,7 +262,8 @@ mod pa_ken2019;
 mod panasonic2020;
 mod sumitob2019;
 mod tenka1_2018;
+mod tenka1_2019;
 mod zone2021;
 fn main() {
-    agc018::main();
+    tenka1_2019::main();
 }
