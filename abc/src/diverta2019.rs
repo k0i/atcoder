@@ -8,6 +8,25 @@ use std::collections::{HashMap, HashSet};
 #[fastout]
 pub fn main() {
     ip! {
+        n: u64,
+    };
+    if n <= 2 {
+        println!("0");
+        return;
+    }
+    let mut res = n - 1;
+    let mut x = 2;
+    while x * x + 2 * x <= n {
+        if n % x == 0 {
+            res += (n - x) / x;
+        }
+        x += 1;
+    }
+    println!("{}", res);
+}
+
+fn c() {
+    ip! {
         n: usize,
         s: [Chars; n],
     }

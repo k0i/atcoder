@@ -217,6 +217,7 @@ mod agc033;
 mod agc035;
 mod agc036;
 mod agc043;
+mod apc001;
 mod arc003;
 mod arc014;
 mod arc020;
@@ -253,8 +254,8 @@ mod cf2016qualc;
 mod cf2017quala;
 mod cf2017qualc;
 mod chokudai_S001;
+mod diverta2019;
 mod diverta2019_2;
-mod diverta2019_c;
 mod jsc2019qual;
 mod keyence2019;
 mod keyence2020;
@@ -267,5 +268,5 @@ mod tenka1_2018;
 mod tenka1_2019;
 mod zone2021;
 fn main() {
-    agc005::main();
+    diverta2019::main();
 }

@@ -10,3 +10,4 @@ proconio = { version = "0.4.3", features = ["derive"] }
 itertools = "0.9.0"
 superslice = "1.0.0"
 rand = "0.8.5"
+num = "0.4.0"
