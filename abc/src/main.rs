@@ -214,6 +214,7 @@ mod agc023;
 mod agc028;
 mod agc032;
 mod agc033;
+mod agc034;
 mod agc035;
 mod agc036;
 mod agc043;
@@ -269,5 +270,5 @@ mod tenka1_2018;
 mod tenka1_2019;
 mod zone2021;
 fn main() {
-    arc058::main();
+    agc034::main();
 }
