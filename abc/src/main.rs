@@ -223,6 +223,7 @@ mod arc014;
 mod arc020;
 mod arc041;
 mod arc053;
+mod arc058;
 mod arc059;
 mod arc063;
 mod arc065;
@@ -268,5 +269,5 @@ mod tenka1_2018;
 mod tenka1_2019;
 mod zone2021;
 fn main() {
-    diverta2019::main();
+    arc058::main();
 }
