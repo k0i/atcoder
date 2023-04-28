@@ -263,6 +263,7 @@ mod keyence2019;
 mod keyence2020;
 mod m_solutions;
 mod nikkei2019_2_qual;
+mod nikkei2019_qual_c;
 mod pa_ken2019;
 mod panasonic2020;
 mod sumitob2019;
@@ -271,5 +272,5 @@ mod tenka1_2018;
 mod tenka1_2019;
 mod zone2021;
 fn main() {
-    tenka1_2017::main();
+    nikkei2019_qual_c::main();
 }
