@@ -6,6 +6,26 @@ use proconio::{
 #[fastout]
 pub fn main() {
     input! {
+        mut a:usize,mut b:usize
+    }
+    let mut v = vec![];
+    if a % 2 == 1 {
+        v.push(a);
+        a += 1;
+    }
+    if b % 2 == 0 {
+        v.push(b);
+    } else {
+        b += 1;
+    }
+    if ((b - a) / 2) % 2 != 0 {
+        v.push(1);
+    }
+    println!("{}", v.iter().fold(0, |a, b| a ^ b));
+}
+
+fn c() {
+    input! {
     n:usize,
     mut m:usize,
     mut a:[(u64,u64);n],
