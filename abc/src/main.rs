@@ -45,6 +45,7 @@ mod abc066;
 mod abc068;
 mod abc069;
 mod abc070;
+mod abc071;
 mod abc072;
 mod abc075;
 mod abc076;
@@ -272,5 +273,5 @@ mod tenka1_2018;
 mod tenka1_2019;
 mod zone2021;
 fn main() {
-    nikkei2019_qual_c::main();
+    abc071::main();
 }
