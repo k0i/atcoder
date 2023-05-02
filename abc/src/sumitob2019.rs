@@ -6,6 +6,39 @@ use proconio::{
 use std::collections::{HashMap, HashSet};
 #[fastout]
 pub fn main() {
+    e()
+}
+
+fn e() {
+    input! {
+        n: usize,
+        a: [i64; n]
+    };
+
+    let p = 1000000007;
+
+    let mut ans = 1;
+    let mut rgb = vec![-1; 3];
+
+    for &a in a.iter() {
+        ans *= rgb
+            .iter()
+            .filter(|&&x| x == a - 1)
+            .collect::<Vec<&i64>>()
+            .len();
+        if let Some(i) = rgb.iter().position(|x| *x == a - 1) {
+            rgb[i] = a;
+        } else {
+            println!("0");
+            return;
+        }
+
+        ans %= p;
+    }
+    println!("{}", ans);
+}
+
+fn d() {
     input! {
         n: i64,
         s: String
