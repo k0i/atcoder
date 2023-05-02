@@ -274,5 +274,5 @@ mod tenka1_2018;
 mod tenka1_2019;
 mod zone2021;
 fn main() {
-    sumitob2019::main();
+    abc126::main();
 }
