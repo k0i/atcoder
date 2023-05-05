@@ -207,6 +207,7 @@ mod agc007;
 mod agc008;
 mod agc011;
 mod agc013;
+mod agc014;
 mod agc015;
 mod agc017;
 mod agc018;
@@ -275,5 +276,5 @@ mod tenka1_2018;
 mod tenka1_2019;
 mod zone2021;
 fn main() {
-    tdpc::main();
+    agc014::main();
 }
