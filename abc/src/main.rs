@@ -277,5 +277,5 @@ mod tenka1_2018;
 mod tenka1_2019;
 mod zone2021;
 fn main() {
-    abc132::main();
+    abc147::main();
 }
