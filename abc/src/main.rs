@@ -205,6 +205,7 @@ mod abc280;
 mod abc288;
 mod abc293;
 mod agc002;
+mod agc003;
 mod agc005;
 mod agc007;
 mod agc008;
@@ -279,5 +280,5 @@ mod tenka1_2018;
 mod tenka1_2019;
 mod zone2021;
 fn main() {
-    cf2017quala::main();
+    agc003::main();
 }
