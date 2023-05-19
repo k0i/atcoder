@@ -1,5 +1,9 @@
 name: comment_driven
-on: issue_comment
+on: 
+  issue_comment:
+  branches:
+      - release
+      - main
 permissions:
   issues: write
   pull-requests: write
