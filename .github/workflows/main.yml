@@ -1,9 +1,9 @@
 name: comment_driven
 on: 
   issue_comment:
-  branches:
-      - release
-      - main
+  pull_request:
+    branches:
+      - master
 permissions:
   issues: write
   pull-requests: write
