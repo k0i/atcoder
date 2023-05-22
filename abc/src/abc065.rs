@@ -5,6 +5,36 @@ use proconio::{
 };
 #[fastout]
 pub fn main() {
+    b()
+}
+fn b() {
+    input! {
+    n:usize,
+    a:[Usize1;n]
+        }
+    let mut visited = vec![false; n];
+    visited[0] = true;
+    let mut queue = vec![0];
+    let mut ans = 0;
+    while queue.len() > 0 {
+        let current = queue.pop().unwrap();
+        let next = a[current];
+        if visited[next] {
+            println!("-1");
+            return;
+        }
+        visited[next] = true;
+        ans += 1;
+        queue.push(next);
+        if next == 1 {
+            println!("{}", ans);
+            return;
+        }
+    }
+    println!("{}", ans);
+}
+
+fn c() {
     input! {
     mut n:usize,
     mut m:usize
